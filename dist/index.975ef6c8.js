@@ -619,109 +619,93 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 //     filteredData(e.target.value)
 // })
 // 1
-// 3
-// function startGame() {
-//     const gameArea = document.getElementById('gameArea');
-//     const scoreDisplay = document.getElementById('score');
-//     let score = 0;
-//     const gameDuration = 10000;
-//     let gameInterval;
-//     function createTarget() {
-//         const target = document.createElement('div');
-//         target.className = 'target';
-//         const maxX = gameArea.clientWidth - 50;
-//         const maxY = gameArea.clientHeight - 50;
-//         target.style.left = `${Math.random() * maxX}px`;
-//         target.style.top = `${Math.random() * maxY}px`;
-//         target.addEventListener('click', () => {
-//             score++;
-//             scoreDisplay.textContent = `Очки: ${score}`;
-//             target.remove();
-//         });
-//         gameArea.appendChild(target);
-//         setTimeout(() => target.remove(), 2000);
-//     }
-//     gameInterval = setInterval(createTarget, 1000);
-//     setTimeout(() => {
-//         clearInterval(gameInterval);
-//         gameArea.innerHTML = "";
-//         scoreDisplay.textContent = `Гру завершено! Ваші очки: ${score}`;
-//     }, gameDuration);
-// }
-// startGame();
-// 4
-// document.addEventListener("DOMContentLoaded", () => {
-//     const timeInput = document.getElementById("timeInput");
-//     const output = document.getElementById("output");
-//     let timerId;
-//     timeInput.addEventListener("input", () => {
-//         const time = parseInt(timeInput.value);
-//         clearTimeout(timerId);
-//         if(isNaN(time) || time <= 0){
-//             output.textContent = 'Введіть коректні дані';
-//             return
+// function setAlert() {
+//     const startButton = document.getElementById('btn');
+//     let count = 0;
+//     const intervalId = setInterval(() => {
+//         count++;
+//         alert(`Повідомлення ${count}`);
+//         if (count === 5) {
+//             clearInterval(intervalId);
+//             alert('Таймер зупинено');
 //         }
-//         output.textContent = `Таймер запущено! Очікуйте ${time} секунд...`;
-//         timerId = setTimeout(() => {
-//             output.textContent = 'Час вийшов! Ось ваші дані!'
-//         }, time*1000)
-//     })
-// })
-var _formDataJs = require("./formData.js");
-function setAlert() {}
-const feedbackForm = document.getElementById('feedbackForm');
-feedbackForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    (0, _formDataJs.saveFormData)({
-        name,
-        email,
-        message
-    });
-    document.getElementById('successMessage').classList.remove('hidden');
-    feedbackForm.reset();
-});
-
-},{"./formData.js":"fqBZb"}],"fqBZb":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "saveFormData", ()=>saveFormData);
-function saveFormData(data) {
-    console.log("\u0414\u0430\u043D\u0456 \u0444\u043E\u0440\u043C\u0438:", data);
-    localStorage.setItem('feedbackFormData', JSON.stringify(data));
+//     }, 1000);
+// }
+// document.getElementById('btn').addEventListener('click', () => (setAlert()));
+// 2
+const box = document.getElementById('box');
+const colors = [
+    '#3498db',
+    '#e74c3c',
+    '#2ecc71',
+    '#f39c12',
+    '#9b59b6',
+    '#1abc9c'
+];
+let colorIndex = 0;
+function changeColor() {
+    box.style.backgroundColor = colors[colorIndex];
+    colorIndex = (colorIndex + 1) % colors.length;
 }
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports,__globalThis) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
+setInterval(changeColor, 2000); // 3
+ // function startGame() {
+ //     const gameArea = document.getElementById('gameArea');
+ //     const scoreDisplay = document.getElementById('score');
+ //     let score = 0;
+ //     const gameDuration = 10000;
+ //     let gameInterval;
+ //     function createTarget() {
+ //         const target = document.createElement('div');
+ //         target.className = 'target';
+ //         const maxX = gameArea.clientWidth - 50;
+ //         const maxY = gameArea.clientHeight - 50;
+ //         target.style.left = `${Math.random() * maxX}px`;
+ //         target.style.top = `${Math.random() * maxY}px`;
+ //         target.addEventListener('click', () => {
+ //             score++;
+ //             scoreDisplay.textContent = `Очки: ${score}`;
+ //             target.remove();
+ //         });
+ //         gameArea.appendChild(target);
+ //         setTimeout(() => target.remove(), 2000);
+ //     }
+ //     gameInterval = setInterval(createTarget, 1000);
+ //     setTimeout(() => {
+ //         clearInterval(gameInterval);
+ //         gameArea.innerHTML = "";
+ //         scoreDisplay.textContent = `Гру завершено! Ваші очки: ${score}`;
+ //     }, gameDuration);
+ // }
+ // startGame();
+ // 4
+ // document.addEventListener("DOMContentLoaded", () => {
+ //     const timeInput = document.getElementById("timeInput");
+ //     const output = document.getElementById("output");
+ //     let timerId;
+ //     timeInput.addEventListener("input", () => {
+ //         const time = parseInt(timeInput.value);
+ //         clearTimeout(timerId);
+ //         if(isNaN(time) || time <= 0){
+ //             output.textContent = 'Введіть коректні дані';
+ //             return
+ //         }
+ //         output.textContent = `Таймер запущено! Очікуйте ${time} секунд...`;
+ //         timerId = setTimeout(() => {
+ //             output.textContent = 'Час вийшов! Ось ваші дані!'
+ //         }, time*1000)
+ //     })
+ // })
+ // import { saveFormData } from './formData.js';
+ // const feedbackForm = document.getElementById('feedbackForm');
+ // feedbackForm.addEventListener('submit', function (event) {
+ //     event.preventDefault();
+ //     const name = document.getElementById('name').value;
+ //     const email = document.getElementById('email').value;
+ //     const message = document.getElementById('message').value;
+ //     saveFormData({ name, email, message });
+ //     document.getElementById('successMessage').classList.remove('hidden');
+ //     feedbackForm.reset();
+ // });
 
 },{}]},["9mu7C","8lqZg"], "8lqZg", "parcelRequire94c2")
 

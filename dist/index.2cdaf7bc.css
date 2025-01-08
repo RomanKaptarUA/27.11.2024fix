@@ -44,4 +44,10 @@ body {
   color: green;
   margin-top: 10px;
 }
+
+#box {
+  background-color: #3498db;
+  width: 100px;
+  height: 100px;
+}
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

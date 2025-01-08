@@ -29,9 +29,34 @@
 
 
 // 1
-function setAlert() {
-    
+// function setAlert() {
+//     const startButton = document.getElementById('btn');
+//     let count = 0;
+//     const intervalId = setInterval(() => {
+//         count++;
+//         alert(`Повідомлення ${count}`);
+//         if (count === 5) {
+//             clearInterval(intervalId);
+//             alert('Таймер зупинено');
+//         }
+//     }, 1000);
+  
+// }
+
+// document.getElementById('btn').addEventListener('click', () => (setAlert()));
+
+
+// 2
+const box = document.getElementById('box');
+const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c'];
+let colorIndex = 0;
+function changeColor() {
+    box.style.backgroundColor = colors[colorIndex];
+
+colorIndex = (colorIndex + 1) % colors.length;
 }
+setInterval(changeColor, 2000);
+
 
 
 // 3
@@ -98,26 +123,27 @@ function setAlert() {
 
 
 
-import { saveFormData } from './formData.js';
 
-const feedbackForm = document.getElementById('feedbackForm');
+// import { saveFormData } from './formData.js';
 
-feedbackForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+// const feedbackForm = document.getElementById('feedbackForm');
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+// feedbackForm.addEventListener('submit', function (event) {
+//     event.preventDefault();
 
-
-    saveFormData({ name, email, message });
+//     const name = document.getElementById('name').value;
+//     const email = document.getElementById('email').value;
+//     const message = document.getElementById('message').value;
 
 
-    document.getElementById('successMessage').classList.remove('hidden');
+//     saveFormData({ name, email, message });
 
 
-    feedbackForm.reset();
-});
+//     document.getElementById('successMessage').classList.remove('hidden');
+
+
+//     feedbackForm.reset();
+// });
 
 
 
