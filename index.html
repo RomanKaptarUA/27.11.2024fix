@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+    
+
+  
+
+
+  <!-- 3 -->
+
+  <!-- <div id="score">Очки: 0</div>
+  <div id="gameArea"></div> -->
+
+
+<!-- 4 -->
+  <!-- <h1>Timer</h1>
+  <input  type="number" id="timeInput" placeholder="Введіть час в секундах" min="1">
+  <div id="output"></div> -->
+
+  <div class="container">
+    <h1>Форма зворотного зв'язку</h1>
+    <form id="feedbackForm">
+      <div>
+        <label for="name">Ім'я:</label>
+        <input type="text" id="name" name="name">
+      </div>
+
+      <div>
+        <label for="email">Електронна пошта:</label>
+        <input type="email" id="email" name="email">
+      </div>
+
+      <div>
+        <label for="message">Повідомлення:</label>
+        <textarea id="message" name="message"></textarea>
+      </div>
+
+      <button type="submit">Відправити</button>
+    </form>
+    <p id="successMessage" class="hidden">Форма успішно надіслана!</p>
+  </div>
+
+  <!-- <div id="app"></div>
+<input class="input-filter" type="text" id="search" placeholder="Введіть ім'я"> -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+    <script type="module" src="./src/index.js"></script>
+</body>
+</html>

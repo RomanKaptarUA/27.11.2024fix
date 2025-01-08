@@ -1,0 +1,47 @@
+#output {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+input {
+  width: 200px;
+  margin: 5px;
+}
+
+body {
+  height: 100vh;
+}
+
+#gameArea {
+  background-color: #f0f8ff;
+  border: 2px solid #010179;
+  width: 100%;
+  height: 80%;
+  position: relative;
+  overflow: hidden;
+}
+
+#score {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.target {
+  cursor: pointer;
+  background-color: #f0f;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+#successMessage {
+  color: green;
+  margin-top: 10px;
+}
+/*# sourceMappingURL=index.2cdaf7bc.css.map */
