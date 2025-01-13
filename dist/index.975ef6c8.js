@@ -709,47 +709,281 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // let timer = setTimeout(function() {
 //     console.log('Finish')
 // }, seconds * 1000);
-const display = document.getElementById("stopwatch-display");
-const startBtn = document.getElementById("start-stopwatch");
-const pauseBtn = document.getElementById("pause-stopwatch");
-const resetBtn = document.getElementById("reset-stopwatch");
-let startTime = 0;
-let elapsedTime = 0;
-let timerInterval;
-let lastUpdate = 0;
-function formatTime(ms) {
-    const hours = Math.floor(ms / 3600000);
-    const minutes = Math.floor(ms % 3600000 / 60000);
-    const seconds = Math.floor(ms % 3600000 / 1000);
-    const milliseconds = Math.floor(ms % 1000);
-    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}:${String(milliseconds).padStart(3, "0")}`;
-}
-function updateDisplay() {
-    const currentTime = performance.now();
-    elapsedTime = currentTime - lastUpdate + elapsedTime;
-    lastUpdate = currentTime;
-    display.textContent = formatTime(Math.round(elapsedTime));
-}
-startBtn.addEventListener("click", ()=>{
-    startBtn.classList.add("hidden");
-    pauseBtn.classList.remove("hidden");
-    resetBtn.classList.remove("hidden");
-    lastUpdate = performance.now();
-    timerInterval = setInterval(updateDisplay, 10);
-});
-pauseBtn.addEventListener("click", ()=>{
-    pauseBtn.classList.add("hidden");
-    startBtn.classList.remove("hidden");
-    clearInterval(timerInterval);
-});
-resetBtn.addEventListener("click", ()=>{
-    clearInterval(timerInterval);
-    elapsedTime = 0;
-    display.textContent = "00:00:00.000";
-    startBtn.classList.remove("hidden");
-    pauseBtn.classList.add("hidden");
-    resetBtn.classList.add("hidden");
-});
+// Таймер
+// const display = document.getElementById("stopwatch-display");
+// const startBtn = document.getElementById("start-stopwatch");
+// const pauseBtn = document.getElementById("pause-stopwatch");
+// const resetBtn = document.getElementById("reset-stopwatch");
+// let startTime = 0;
+// let elapsedTime = 0;
+// let timerInterval;
+// let lastUpdate = 0;
+// function formatTime(ms) {
+//   const hours = Math.floor(ms / (1000 * 60 * 60));
+//   const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+//   const seconds = Math.floor((ms % (1000 * 60 * 60)) / 1000);
+//   const milliseconds = Math.floor(ms % 1000);
+//   return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+//     2,
+//     "0"
+//   )}:${String(seconds).padStart(2, "0")}:${String(milliseconds).padStart(
+//     3,
+//     "0"
+//   )}`;
+// }
+// function updateDisplay() {
+//   const currentTime = performance.now();
+//   elapsedTime = currentTime - lastUpdate + elapsedTime;
+//   lastUpdate = currentTime;
+//   display.textContent = formatTime(Math.round(elapsedTime));
+// }
+// startBtn.addEventListener("click", () => {
+//   startBtn.classList.add("hidden");
+//   pauseBtn.classList.remove("hidden");
+//   resetBtn.classList.remove("hidden");
+//   lastUpdate = performance.now();
+//   timerInterval = setInterval(updateDisplay, 10);
+// });
+// pauseBtn.addEventListener("click", () => {
+//   pauseBtn.classList.add("hidden");
+//   startBtn.classList.remove("hidden");
+//   clearInterval(timerInterval);
+// });
+// resetBtn.addEventListener("click", () => {
+//   clearInterval(timerInterval);
+//   elapsedTime = 0;
+//   display.textContent = "00:00:00.000";
+//   startBtn.classList.remove("hidden");
+//   pauseBtn.classList.add("hidden");
+//   resetBtn.classList.add("hidden");
+// });
+// Таймер 1
+// let timer = 10000;
+// const timerEl = document.getElementById('timer');
+// const timerInterval = setInterval(() => {
+//   timer -= 1000;
+//   timerEl.textContent = (timer / 1000).toFixed(0);
+//   if(timer <= 5000) {
+//     document.body.style.backgroundColor = 'yellow';
+//   }
+//   if(timer <=0) {
+//     clearInterval(timerInterval)
+//     timerEl.textContent = '0';
+//   }
+// }, 1000);
+//  // Завантажуємо задачі із localStorage при завантаженні сторінки
+//  document.addEventListener('DOMContentLoaded', loadTasks);
+//  function loadTasks() {
+//      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+//      const taskList = document.getElementById('task-list');
+//      taskList.innerHTML = ''; // очищаємо список перед додаванням нових задач
+//      tasks.forEach((task, index) => {
+//          const li = document.createElement('li');
+//          li.classList.toggle('completed', task.completed);
+//          li.innerHTML = `
+//              <input type="checkbox" ${task.completed ? 'checked' : ''} onclick="toggleTask(${index})">
+//              ${task.text}
+//              <button onclick="removeTask(${index})">Видалити</button>
+//          `;
+//          taskList.appendChild(li);
+//      });
+//  }
+//  // Додаємо нову задачу
+//  function addTask() {
+//      const input = document.getElementById('task-input');
+//      const taskText = input.value.trim();
+//      if (taskText === '') {
+//          return; // Якщо введено порожній текст, не додаємо задачу
+//      }
+//      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+//      tasks.push({ text: taskText, completed: false });
+//      localStorage.setItem('tasks', JSON.stringify(tasks));
+//      input.value = ''; // очищуємо поле вводу
+//      loadTasks(); // перезавантажуємо список задач
+//  }
+//  // Перемикаємо статус задачі (виконано / не виконано)
+//  function toggleTask(index) {
+//      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+//      tasks[index].completed = !tasks[index].completed;
+//      localStorage.setItem('tasks', JSON.stringify(tasks));
+//      loadTasks(); // перезавантажуємо список задач
+//  }
+//  // Видаляємо задачу
+//  function removeTask(index) {
+//      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+//      tasks.splice(index, 1); // видаляємо задачу з масиву
+//      localStorage.setItem('tasks', JSON.stringify(tasks));
+//      loadTasks(); // перезавантажуємо список задач
+//  }
+// 1
+// const taskForm = document.getElementById('taskForm');
+// const taskInput = document.getElementById('taskInput');
+// const taskList = document.getElementById('taskList');
+// let tasks = JSON.parse(localStorage.getItem('tasks'));
+// function renderTasks() {
+//     taskList.innerHTML = '';
+//     tasks.forEach((task, index) => {
+//         const li = document.createElement('li');
+//         li.classList.toggle('completed', task.completed);
+//         const checkbox = document.createElement('input');
+//         checkbox.type = 'checkbox';
+//         checkbox.checked = task.completed;
+//         checkbox.classList.add('checkbox');
+//         checkbox.onclick = () => toggleTaskCompletion(index);
+//         const taskText = document.createElement('span');
+//         taskText.textContent = task.text;
+//         li.appendChild(checkbox);
+//         li.appendChild(taskText);
+//         taskList.appendChild(li);
+//     });
+// }
+// taskForm.addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     const newTask = {
+//         text: taskInput.value,
+//         completed: false,
+//     };
+//     tasks.push(newTask);
+//     localStorage.setItem('tasks', JSON.stringify(tasks));
+//     taskInput.value = '';
+//     renderTasks();
+// });
+// function toggleTaskCompletion(index) {
+//     tasks[index].completed = !tasks[index].completed;
+//     localStorage.setItem('tasks', JSON.stringify(tasks));
+//     renderTasks();
+// }
+// renderTasks();
+// //////////////2
+// function createTestUser() {
+//     const user = {
+//         username: 'testuser',
+//         password: 'password123'
+//     };
+//     localStorage.setItem('user', JSON.stringify(user));
+// }
+// window.onload = function() {
+//     const storedUser = JSON.parse(localStorage.getItem('user'));
+//     if (storedUser) {
+//         alert('Вітаємо, ' + storedUser.username);
+//         document.getElementById('login-form').style.display = 'none';
+//     }
+// };
+// document.getElementById('login-form').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     const username = document.getElementById('username').value;
+//     const password = document.getElementById('password').value;
+//     const storedUser = JSON.parse(localStorage.getItem('user'));
+//     if (storedUser && storedUser.username === username && storedUser.password === password) {
+//         alert('Вхід успішний!');
+//         document.getElementById('login-form').style.display = 'none'; 
+//         document.getElementById('error-message').style.display = 'none'; 
+//     } else {
+//         document.getElementById('error-message').style.display = 'block';
+//     }
+// });
+// // 3
+// function addContact() {
+//     const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+//     const bookmarkList = document.getElementById('bookmark-list');
+//     bookmarkList.innerHTML = '';
+//     bookmarks.forEach((bookmark, index) => {
+//         const li = document.createElement('li');
+//         li.innerHTML = `
+//             <a href="${bookmark.url}" target="_blank">${bookmark.title}</a>`;
+//         bookmarkList.appendChild(li);
+//     });
+// }
+// document.getElementById('bookmark-form').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     const url = document.getElementById('url').value;
+//     const title = document.getElementById('title').value;
+//     const bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+//     bookmarks.push({ url, title });
+//     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+//     addContact();
+//     document.getElementById('url').value = '';
+//     document.getElementById('title').value = '';
+// });
+// 4
+// document.addEventListener('DOMContentLoaded', function () {
+//     const contactForm = document.getElementById('contactForm');
+//     const firstNameInput = document.getElementById('firstName');
+//     const lastNameInput = document.getElementById('lastName');
+//     const phoneInput = document.getElementById('phone');
+//     const emailInput = document.getElementById('email');
+//     const contactsList = document.getElementById('contactsList');
+//     let contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+//     function renderContacts() {
+//         contactsList.innerHTML = '';
+//         contacts.forEach((contact, index) => {
+//             const li = document.createElement('li');
+//             li.textContent = `${contact.firstName} ${contact.lastName} — ${contact.phone} — ${contact.email}`;
+//             const editBtn = document.createElement('button');
+//             editBtn.textContent = 'Редагувати';
+//             editBtn.onclick = () => editContact(index);
+//             const deleteBtn = document.createElement('button');
+//             deleteBtn.textContent = 'Видалити';
+//             deleteBtn.onclick = () => deleteContact(index);
+//             li.appendChild(editBtn);
+//             li.appendChild(deleteBtn);
+//             contactsList.appendChild(li);
+//         });
+//     }
+//     contactForm.addEventListener('submit', function(event) {
+//         event.preventDefault();
+//         const newContact = {
+//             firstName: firstNameInput.value,
+//             lastName: lastNameInput.value,
+//             phone: phoneInput.value,
+//             email: emailInput.value,
+//         };
+//         contacts.push(newContact);
+//         localStorage.setItem('contacts', JSON.stringify(contacts));
+//         contactForm.reset();
+//         renderContacts();
+//     });
+//     function editContact(index) {
+//         const contact = contacts[index];
+//         firstNameInput.value = contact.firstName;
+//         lastNameInput.value = contact.lastName;
+//         phoneInput.value = contact.phone;
+//         emailInput.value = contact.email;
+//         contactForm.onsubmit = function(event) {
+//             event.preventDefault();
+//             contacts[index] = {
+//                 firstName: firstNameInput.value,
+//                 lastName: lastNameInput.value,
+//                 phone: phoneInput.value,
+//                 email: emailInput.value,
+//             };
+//             localStorage.setItem('contacts', JSON.stringify(contacts));
+//             contactForm.reset();
+//             renderContacts();
+//             contactForm.onsubmit = function(event) {
+//                 event.preventDefault();
+//                 const newContact = {
+//                     firstName: firstNameInput.value,
+//                     lastName: lastNameInput.value,
+//                     phone: phoneInput.value,
+//                     email: emailInput.value,
+//                 };
+//                 contacts.push(newContact);
+//                 localStorage.setItem('contacts', JSON.stringify(contacts));
+//                 contactForm.reset();
+//                 renderContacts();
+//             };
+//         };
+//     }
+//     function deleteContact(index) {
+//         if (confirm('Ви впевнені, що хочете видалити цей контакт?')) {
+//             contacts.splice(index, 1);
+//             localStorage.setItem('contacts', JSON.stringify(contacts));
+//             renderContacts();
+//         }
+//     }
+//     renderContacts();
+// });
 
 },{}]},["9mu7C","8lqZg"], "8lqZg", "parcelRequire94c2")
 
