@@ -984,6 +984,54 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 //     }
 //     renderContacts();
 // });
+// const date = new Date();
+//  console.log(date); // Wed Jan 15 2025 20:13:53 GMT+0200 (за східноєвропейським стандартним часом)
+// let ms = Date.parse('2025-01-14T13:52:20.423');
+// alert(ms);
+// const date1 = new Date('January 16, 2025');
+// console.log(date1);
+// const date2 = new Date(2021, 9, 10, 12, 15, 50, 4);
+// console.log(date2);
+// const date = new Date(1750000000000);
+// console.log(date);
+// const date = Date.now();
+// console.log(date) //1736966082052 скільки міліседунд пройшло після 1 січня 1970
+// const date = new Date();
+// console.log('Date: ' + date);
+// console.log("Date: " + date.getDate()); // Date: 15
+// console.log("Date: " + date.getDay()); // Date: 3 починаючи з неділі
+// console.log("Date: " + date.getMonth()); // Date: 0
+// GET
+// const date = new Date();
+// console.log(`Час в мілісекундах віж 1 січня 1970 року: ${date.getTime()}`);
+// let result = 'Date: ';
+// result += date.getFullYear() + '/';
+// result += date.getMonth() + '/';
+// result += date.getDate() + '.';
+// result += 'Time: ' + date.getHours() + ':'
+// result += date.getMinutes() + ':';
+// result += date.getSeconds() + '.';
+// result += date.getMilliseconds() + '.';
+// console.log(result);
+// SET
+// const date = new Date(2025, 0, 15, 21, 0, 0, 0);
+// console.log(date.getTime()); // 1736967600000
+const secondsDate = new Date();
+secondsDate.setFullYear(2026, 2, 7);
+console.log(secondsDate);
+let date = new Date();
+const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+};
+const locateUk = date.toLocaleDateString('Uk-uk', options);
+console.log(locateUk); // середу, 15 січ. 2025 р., 21:14
+const locateUs = date.toLocaleString('en-US', options);
+console.log(locateUs); // Wednesday, Jan 15, 2025, 09:14 PM
 
 },{}]},["9mu7C","8lqZg"], "8lqZg", "parcelRequire94c2")
 
