@@ -618,23 +618,59 @@
 // const date = new Date(2025, 0, 15, 21, 0, 0, 0);
 // console.log(date.getTime()); // 1736967600000
 
-const secondsDate = new Date();
-secondsDate.setFullYear(2026, 2, 7);
-console.log(secondsDate);
+// const secondsDate = new Date();
+// secondsDate.setFullYear(2026, 2, 7);
+// console.log(secondsDate);
 
-let date = new Date();
+// let date = new Date();
 
-const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
+// const options = {
+//     weekday: 'long',
+//     year: 'numeric',
+//     month: 'short',
+//     day: 'numeric',
+//     hour: '2-digit',
+//     minute: '2-digit',
+// }
+
+// const locateUk = date.toLocaleDateString('Uk-uk', options);
+// console.log(locateUk); // середу, 15 січ. 2025 р., 21:14
+
+// const locateUs = date.toLocaleString('en-US', options);
+// console.log(locateUs); // Wednesday, Jan 15, 2025, 09:14 PM
+
+
+
+
+
+let start = new Date();
+
+for (let i = 0; i < 100000; i++){
+    let doSmth = i * i * i;
 }
 
-const locateUk = date.toLocaleDateString('Uk-uk', options);
-console.log(locateUk); // середу, 15 січ. 2025 р., 21:14
+let end = Date.now();
+alert(`${end - start}`)
 
-const locateUs = date.toLocaleString('en-US', options);
-console.log(locateUs); // Wednesday, Jan 15, 2025, 09:14 PM
+
+// Date.now() === new Date().getTime;
+
+
+
+// const date = new Date();
+// console.log(date);
+// console.log(date.toDateString());
+// console.log(date.toTimeString());
+
+
+
+// let today = new Date();
+// let tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() +1);
+// const ms = tomorrow - today;
+// console.log(parseFloat(ms / 1000));
+
+const getAge = (birthDate) => {
+    let today = new Date();
+    let year = today.getFullYear();
+    
+}
