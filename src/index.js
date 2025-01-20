@@ -241,7 +241,14 @@
 
 
 
-//  // Завантажуємо задачі із localStorage при завантаженні сторінки
+
+
+
+
+
+
+
+
 //  document.addEventListener('DOMContentLoaded', loadTasks);
  
 //  function loadTasks() {
@@ -263,7 +270,6 @@
 //      });
 //  }
  
-//  // Додаємо нову задачу
 //  function addTask() {
 //      const input = document.getElementById('task-input');
 //      const taskText = input.value.trim();
@@ -280,7 +286,6 @@
 //      loadTasks(); // перезавантажуємо список задач
 //  }
  
-//  // Перемикаємо статус задачі (виконано / не виконано)
 //  function toggleTask(index) {
 //      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 //      tasks[index].completed = !tasks[index].completed;
@@ -288,7 +293,7 @@
 //      loadTasks(); // перезавантажуємо список задач
 //  }
  
-//  // Видаляємо задачу
+
 //  function removeTask(index) {
 //      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 //      tasks.splice(index, 1); // видаляємо задачу з масиву
@@ -643,14 +648,14 @@
 
 
 
-let start = new Date();
+// let start = new Date();
 
-for (let i = 0; i < 100000; i++){
-    let doSmth = i * i * i;
-}
+// for (let i = 0; i < 100000; i++){
+//     let doSmth = i * i * i;
+// }
 
-let end = Date.now();
-alert(`${end - start}`)
+// let end = Date.now();
+// alert(`${end - start}`)
 
 
 // Date.now() === new Date().getTime;
@@ -669,8 +674,103 @@ alert(`${end - start}`)
 // const ms = tomorrow - today;
 // console.log(parseFloat(ms / 1000));
 
-const getAge = (birthDate) => {
-    let today = new Date();
-    let year = today.getFullYear();
+// const getAge = (birthDate) => {
+//     let today = new Date();
+//     let year = today.getFullYear();
     
+// }
+
+
+
+
+
+///////////////////////////////////////
+//1
+
+
+
+
+// let totalTime = 60 * 60;
+// let timerInterval;
+// const timerDisplay = document.getElementById('timerDisplay');
+// const messageDisplay = document.getElementById('message');
+// const startButton = document.getElementById('startButton');
+
+
+// function updateTime() {
+//     const hours = Math.floor(totalTime / 3600);
+//     const minutes = Math.floor((totalTime % 3600) / 60);
+//     const seconds = totalTime % 60;
+
+//     timerDisplay.textContent = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+    
+//     if (totalTime <= 30 * 60 && totalTime > 29 * 60) {
+//         messageDisplay.textContent = 'Залишилось менше половини часу!';
+//     }
+// }
+
+
+// function startTimer() {
+//     timerInterval = setInterval(() => {
+//         totalTime--;
+//         updateTime();
+//         if (totalTime <= 0) {
+//             clearInterval(timerInterval);
+//             messageDisplay.textContent = 'Таймер завершено!';
+//         }
+//     }, 1000);
+// }
+// startButton.addEventListener('click', () => {
+//     startButton.disabled = true;
+//     startTimer();
+// });
+
+
+
+/////////////////////////////////////
+//2
+
+
+
+let totalTime = 30;
+let timerInterval;
+let countdownInterval;
+const timerDisplay = document.getElementById('timerDisplay');
+const startButton = document.getElementById('startButton');
+
+function updateTime() {
+    const minutes = Math.floor(totalTime / 60);
+    const seconds = totalTime % 60;
+
+  timerDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+    if (totalTime <= 10 && totalTime > 0) {
+        timerDisplay.classList.add('blinking');
+    } else {
+        timerDisplay.classList.remove('blinking');
+    }
 }
+
+
+function startTimer() {
+    startButton.disabled = true;
+    totalTime = 30;
+    updateTime(); 
+
+    countdownInterval = setInterval(() => {
+        totalTime--; 
+        updateTime(); 
+
+        if (totalTime <= 0) {
+            clearInterval(countdownInterval);
+            startButton.disabled = false;
+            startButton.textContent = 'Почати знову'; 
+        }
+    }, 1000);
+}
+
+startButton.addEventListener('click', () => {
+    startButton.textContent = 'Запускається...';
+    startTimer();
+});

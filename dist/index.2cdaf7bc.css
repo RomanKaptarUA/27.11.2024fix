@@ -1,2 +1,45 @@
+body {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
 
+#timerDisplay {
+  margin: 20px;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+button {
+  cursor: pointer;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  margin-top: 30px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.blinking {
+  animation: 1s infinite blink;
+}
+
+@keyframes blink {
+  0% {
+    color: red;
+  }
+
+  50% {
+    color: #ff0;
+  }
+
+  100% {
+    color: red;
+  }
+}
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

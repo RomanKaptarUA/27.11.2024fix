@@ -314,3 +314,84 @@ li a {
 ul{
   list-style: none;
 } */
+
+
+
+
+
+
+
+/* body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+#timerDisplay {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+#message {
+  font-size: 24px;
+  color: red;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+button:hover {
+  background-color: #45a049;
+} */
+
+
+
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+#timerDisplay {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.blinking {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { color: red; }
+  50% { color: yellow; }
+  100% { color: red; }
+}

@@ -771,7 +771,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 //     timerEl.textContent = '0';
 //   }
 // }, 1000);
-//  // Завантажуємо задачі із localStorage при завантаженні сторінки
 //  document.addEventListener('DOMContentLoaded', loadTasks);
 //  function loadTasks() {
 //      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -788,7 +787,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 //          taskList.appendChild(li);
 //      });
 //  }
-//  // Додаємо нову задачу
 //  function addTask() {
 //      const input = document.getElementById('task-input');
 //      const taskText = input.value.trim();
@@ -801,14 +799,12 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 //      input.value = ''; // очищуємо поле вводу
 //      loadTasks(); // перезавантажуємо список задач
 //  }
-//  // Перемикаємо статус задачі (виконано / не виконано)
 //  function toggleTask(index) {
 //      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 //      tasks[index].completed = !tasks[index].completed;
 //      localStorage.setItem('tasks', JSON.stringify(tasks));
 //      loadTasks(); // перезавантажуємо список задач
 //  }
-//  // Видаляємо задачу
 //  function removeTask(index) {
 //      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 //      tasks.splice(index, 1); // видаляємо задачу з масиву
@@ -1016,22 +1012,103 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // SET
 // const date = new Date(2025, 0, 15, 21, 0, 0, 0);
 // console.log(date.getTime()); // 1736967600000
-const secondsDate = new Date();
-secondsDate.setFullYear(2026, 2, 7);
-console.log(secondsDate);
-let date = new Date();
-const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-};
-const locateUk = date.toLocaleDateString('Uk-uk', options);
-console.log(locateUk); // середу, 15 січ. 2025 р., 21:14
-const locateUs = date.toLocaleString('en-US', options);
-console.log(locateUs); // Wednesday, Jan 15, 2025, 09:14 PM
+// const secondsDate = new Date();
+// secondsDate.setFullYear(2026, 2, 7);
+// console.log(secondsDate);
+// let date = new Date();
+// const options = {
+//     weekday: 'long',
+//     year: 'numeric',
+//     month: 'short',
+//     day: 'numeric',
+//     hour: '2-digit',
+//     minute: '2-digit',
+// }
+// const locateUk = date.toLocaleDateString('Uk-uk', options);
+// console.log(locateUk); // середу, 15 січ. 2025 р., 21:14
+// const locateUs = date.toLocaleString('en-US', options);
+// console.log(locateUs); // Wednesday, Jan 15, 2025, 09:14 PM
+// let start = new Date();
+// for (let i = 0; i < 100000; i++){
+//     let doSmth = i * i * i;
+// }
+// let end = Date.now();
+// alert(`${end - start}`)
+// Date.now() === new Date().getTime;
+// const date = new Date();
+// console.log(date);
+// console.log(date.toDateString());
+// console.log(date.toTimeString());
+// let today = new Date();
+// let tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() +1);
+// const ms = tomorrow - today;
+// console.log(parseFloat(ms / 1000));
+// const getAge = (birthDate) => {
+//     let today = new Date();
+//     let year = today.getFullYear();
+// }
+///////////////////////////////////////
+//1
+// let totalTime = 60 * 60;
+// let timerInterval;
+// const timerDisplay = document.getElementById('timerDisplay');
+// const messageDisplay = document.getElementById('message');
+// const startButton = document.getElementById('startButton');
+// function updateTime() {
+//     const hours = Math.floor(totalTime / 3600);
+//     const minutes = Math.floor((totalTime % 3600) / 60);
+//     const seconds = totalTime % 60;
+//     timerDisplay.textContent = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+//     if (totalTime <= 30 * 60 && totalTime > 29 * 60) {
+//         messageDisplay.textContent = 'Залишилось менше половини часу!';
+//     }
+// }
+// function startTimer() {
+//     timerInterval = setInterval(() => {
+//         totalTime--;
+//         updateTime();
+//         if (totalTime <= 0) {
+//             clearInterval(timerInterval);
+//             messageDisplay.textContent = 'Таймер завершено!';
+//         }
+//     }, 1000);
+// }
+// startButton.addEventListener('click', () => {
+//     startButton.disabled = true;
+//     startTimer();
+// });
+/////////////////////////////////////
+//2
+let totalTime = 30;
+let timerInterval;
+let countdownInterval;
+const timerDisplay = document.getElementById('timerDisplay');
+const startButton = document.getElementById('startButton');
+function updateTime() {
+    const minutes = Math.floor(totalTime / 60);
+    const seconds = totalTime % 60;
+    timerDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    if (totalTime <= 10 && totalTime > 0) timerDisplay.classList.add('blinking');
+    else timerDisplay.classList.remove('blinking');
+}
+function startTimer() {
+    startButton.disabled = true;
+    totalTime = 30;
+    updateTime();
+    countdownInterval = setInterval(()=>{
+        totalTime--;
+        updateTime();
+        if (totalTime <= 0) {
+            clearInterval(countdownInterval);
+            startButton.disabled = false;
+            startButton.textContent = "\u041F\u043E\u0447\u0430\u0442\u0438 \u0437\u043D\u043E\u0432\u0443";
+        }
+    }, 1000);
+}
+startButton.addEventListener('click', ()=>{
+    startButton.textContent = "\u0417\u0430\u043F\u0443\u0441\u043A\u0430\u0454\u0442\u044C\u0441\u044F...";
+    startTimer();
+});
 
 },{}]},["9mu7C","8lqZg"], "8lqZg", "parcelRequire94c2")
 
