@@ -1079,36 +1079,78 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // });
 /////////////////////////////////////
 //2
-let totalTime = 30;
-let timerInterval;
-let countdownInterval;
-const timerDisplay = document.getElementById('timerDisplay');
-const startButton = document.getElementById('startButton');
-function updateTime() {
-    const minutes = Math.floor(totalTime / 60);
-    const seconds = totalTime % 60;
-    timerDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    if (totalTime <= 10 && totalTime > 0) timerDisplay.classList.add('blinking');
-    else timerDisplay.classList.remove('blinking');
+// let totalTime = 30;
+// let timerInterval;
+// let countdownInterval;
+// const timerDisplay = document.getElementById('timerDisplay');
+// const startButton = document.getElementById('startButton');
+// function updateTime() {
+//     const minutes = Math.floor(totalTime / 60);
+//     const seconds = totalTime % 60;
+//   timerDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+//     if (totalTime <= 10 && totalTime > 0) {
+//         timerDisplay.classList.add('blinking');
+//     } else {
+//         timerDisplay.classList.remove('blinking');
+//     }
+// }
+// function startTimer() {
+//     startButton.disabled = true;
+//     totalTime = 30;
+//     updateTime(); 
+//     countdownInterval = setInterval(() => {
+//         totalTime--; 
+//         updateTime(); 
+//         if (totalTime <= 0) {
+//             clearInterval(countdownInterval);
+//             startButton.disabled = false;
+//             startButton.textContent = 'Почати знову'; 
+//         }
+//     }, 1000);
+// }
+// startButton.addEventListener('click', () => {
+//     startButton.textContent = 'Запускається...';
+//     startTimer();
+// });
+///////////////////////////////////////////////////////////////
+// Напишіть функцію, яка перевіряє,
+// чи є задана дата майбутньою порівняно з поточною датою.
+// function checkDate(date){
+//     let today = Date.now();
+//     let givenDate = new Date(date);
+//     return today < givenDate;
+// }
+// console.log(checkDate('2025-06-01'));
+////////////////////////////////////////////////////////////
+//Напишіть функцію, яка обчислює скільки
+//днів залишилося до наступного
+//Дня народження на основі заданої дати народження.
+// let = prompt('Your birthday date!');
+// function birthday(birthDate) {
+//     let curDate = Date.now();
+//     let birthTime = new Date(`2025-${birthDate}`);
+//     const days = Math.floor((birthTime - curDate) / (1000 * 60 * 60 * 24  ));
+//     return days;
+// }
+// console.log(birthday(birthDate));
+/////////////////////////////////////////////////////////////////
+// function getDayOfMonth(year, month){
+//     const nextMonth = new Date(year, month + 1, 0);
+//     return nextMonth.getDate();
+// }
+// console.log(getDayOfMonth(2012, 1))
+///////////////////////////////////////////////////////////
+// Напишіть функцію, яка обчислює
+// кількість робочих днів між двома заданими датами (не включаючи вихідні).
+let start = prompt('Start date');
+let end = prompt('End date');
+function calculateWorkDays(start, end) {
+    const secStart = new Date(start);
+    const secEnd = new Date(end);
+    let dayStart = secStart.getDay();
+    let countDays = Math.floor((secEnd - secStart) / 86400000);
+    for(let i = 0; i < countDays; i++);
 }
-function startTimer() {
-    startButton.disabled = true;
-    totalTime = 30;
-    updateTime();
-    countdownInterval = setInterval(()=>{
-        totalTime--;
-        updateTime();
-        if (totalTime <= 0) {
-            clearInterval(countdownInterval);
-            startButton.disabled = false;
-            startButton.textContent = "\u041F\u043E\u0447\u0430\u0442\u0438 \u0437\u043D\u043E\u0432\u0443";
-        }
-    }, 1000);
-}
-startButton.addEventListener('click', ()=>{
-    startButton.textContent = "\u0417\u0430\u043F\u0443\u0441\u043A\u0430\u0454\u0442\u044C\u0441\u044F...";
-    startTimer();
-});
 
 },{}]},["9mu7C","8lqZg"], "8lqZg", "parcelRequire94c2")
 
