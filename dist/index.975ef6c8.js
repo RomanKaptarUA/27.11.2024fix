@@ -1142,15 +1142,46 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 ///////////////////////////////////////////////////////////
 // Напишіть функцію, яка обчислює
 // кількість робочих днів між двома заданими датами (не включаючи вихідні).
-let start = prompt('Start date');
-let end = prompt('End date');
-function calculateWorkDays(start, end) {
-    const secStart = new Date(start);
-    const secEnd = new Date(end);
-    let dayStart = secStart.getDay();
-    let countDays = Math.floor((secEnd - secStart) / 86400000);
-    for(let i = 0; i < countDays; i++);
+// function countBusinessDays(startDate, endDate) {
+//     const start = new Date(startDate);
+//     const end = new Date(endDate);
+//     if(start > end) {
+//         return 0;
+//     }
+//     let businessDaysCount = 0;
+//     for (let currentDay = new Date(start); currentDay <= end; currentDay.setDate(currentDay.getDate() + 1)) {
+//         const dayOfWeek = currentDay.getDay();
+//         if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+//             businessDaysCount++;
+//         }
+//     }
+//     return businessDaysCount;
+//        }
+// const startDate = '2025-01-15';
+// const endDate = '2025-01-24'
+// console.log(countBusinessDays(startDate, endDate));
+//Форма реєстрації
+const savedUser = JSON.parse(localStorage.getItem('user'));
+const form = document.getElementById('registrationForm');
+const welcomeDiv = document.getElementById('welcome');
+if (savedUser) {
+    welcomeDiv.textContent = `\u{41B}\u{430}\u{441}\u{43A}\u{430}\u{432}\u{43E} \u{43F}\u{440}\u{43E}\u{441}\u{438}\u{43C}\u{43E}, ${savedUser.name}!`;
+    form.style.display = 'none';
 }
+form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const user = {
+        name,
+        email,
+        password
+    };
+    localStorage.setItem('user', JSON.stringify(user));
+    welcomeDiv.textContent = `\u{41B}\u{430}\u{441}\u{43A}\u{430}\u{432}\u{43E} \u{43F}\u{440}\u{43E}\u{441}\u{438}\u{43C}\u{43E}, ${savedUser.name}!`;
+    form.style.display = 'none';
+});
 
 },{}]},["9mu7C","8lqZg"], "8lqZg", "parcelRequire94c2")
 

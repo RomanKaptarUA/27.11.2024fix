@@ -818,15 +818,53 @@
 // Напишіть функцію, яка обчислює
 // кількість робочих днів між двома заданими датами (не включаючи вихідні).
 
-let start = prompt('Start date');
-let end = prompt('End date');
-function calculateWorkDays(start, end) {
-    const secStart = new Date(start);
-    const secEnd = new Date(end);
-    let dayStart = secStart.getDay();
-    let countDays = Math.floor((secEnd - secStart) / (1000*60*60*24));
+// function countBusinessDays(startDate, endDate) {
+//     const start = new Date(startDate);
+//     const end = new Date(endDate);
 
-    for (let i = 0; i < countDays; i++){
-        if
-    }
+//     if(start > end) {
+//         return 0;
+//     }
+
+//     let businessDaysCount = 0;
+    
+//     for (let currentDay = new Date(start); currentDay <= end; currentDay.setDate(currentDay.getDate() + 1)) {
+//         const dayOfWeek = currentDay.getDay();
+    
+//         if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+//             businessDaysCount++;
+//         }
+//     }
+
+//     return businessDaysCount;
+//        }
+
+// const startDate = '2025-01-15';
+// const endDate = '2025-01-24'
+// console.log(countBusinessDays(startDate, endDate));
+
+
+
+//Форма реєстрації
+const savedUser = JSON.parse(localStorage.getItem('user'));
+const form = document.getElementById('registrationForm');
+const welcomeDiv = document.getElementById('welcome');
+
+if (savedUser) {
+    welcomeDiv.textContent = `Ласкаво просимо, ${savedUser.name}!`;
+    form.style.display = 'none';
 }
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    const user = { name, email, password };
+    localStorage.setItem('user', JSON.stringify(user));
+
+    welcomeDiv.textContent = `Ласкаво просимо, ${savedUser.name}!`;
+    form.style.display = 'none';
+})

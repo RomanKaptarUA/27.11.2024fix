@@ -1,45 +1,46 @@
 body {
-  text-align: center;
+  background-color: azure;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  display: flex;
 }
 
-#timerDisplay {
-  margin: 20px;
-  font-size: 48px;
-  font-weight: bold;
+form {
+  background-color: #fffff5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 350px;
+  padding: 20px;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 95%;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 button {
-  cursor: pointer;
   color: #fff;
-  background-color: #4caf50;
+  cursor: pointer;
+  background-color: #04a104;
   border: none;
-  border-radius: 5px;
-  margin-top: 30px;
-  padding: 10px 20px;
-  font-size: 16px;
+  border-radius: 4px;
+  width: 95%;
+  padding: 10px;
+  font-weight: 700;
 }
 
-button:hover {
-  background-color: #45a049;
+button:hover, button:focus {
+  background-color: #019201;
 }
 
-.blinking {
-  animation: 1s infinite blink;
-}
-
-@keyframes blink {
-  0% {
-    color: red;
-  }
-
-  50% {
-    color: #ff0;
-  }
-
-  100% {
-    color: red;
-  }
+.welcome-message {
+  color: #212121;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 20px;
 }
 /*# sourceMappingURL=index.2cdaf7bc.css.map */
