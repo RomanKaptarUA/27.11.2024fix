@@ -897,18 +897,18 @@
 // ПРОМІСИ
 // Юра Глуханюк
 
-const isActive = true;
+// const isActive = true;
 
-const one = new Promise((resolve, reject) => {
-setTimeout(() => {
-    if(isActive) {
-        resolve('Person is active')
-    } else {
-        reject('Person isn*t active')
-    }
+// const one = new Promise((resolve, reject) => {
+// setTimeout(() => {
+//     if(isActive) {
+//         resolve('Person is active')
+//     } else {
+//         reject('Person isn*t active')
+//     }
 
-}, 2000)
-});
+// }, 2000)
+// });
 
 // console.log('Before one.then()');
 
@@ -925,12 +925,58 @@ setTimeout(() => {
 
 // console.log('After one.then()');
 
-one
-.then(value => {
-    console.log(value);
-})
-.catch(error => {
-    console.log(error);
-})
-// використовуємо .finally() після завершення дії//
-.finally(() => console.log('Promise settled'));
+// one
+// .then(value => {
+//     console.log(value);
+// })
+// .catch(error => {
+//     console.log(error);
+// })
+// // використовуємо .finally() після завершення дії//
+// .finally(() => console.log('Promise settled'));
+
+
+
+
+
+
+///////////////////////////////////
+
+function updateCountdownTimer(selector, targetDate) {
+    const timerElement = document.querySelector(selector);
+  
+    const now = new Date();
+    const time = targetDate - now;
+  
+    if (time <= 0) {
+      clearInterval(timerInterval);
+      return;
+    }
+  
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((time % (1000 * 60)) / 1000);
+  
+    displayTime(timerElement, days, hours, mins, secs);
+  }
+  
+  function displayTime(timerElement, days, hours, mins, secs) {
+    const dayElement = timerElement.querySelector('[data-value="days"]');
+    const hourElement = timerElement.querySelector('[data-value="hours"]');
+    const minElement = timerElement.querySelector('[data-value="mins"]');
+    const secElement = timerElement.querySelector('[data-value="secs"]');
+  
+    dayElement.textContent = days;
+    hourElement.textContent = hours.toString().padStart(2, '0');
+    minElement.textContent = mins.toString().padStart(2, '0');
+    secElement.textContent = secs.toString().padStart(2, '0');
+  }
+  
+  const targetDate = new Date('June 1, 2025');
+  
+  const timerInterval = setInterval(() => {
+    updateCountdownTimer('#timer-1', targetDate);
+  }, 1000);
+  
+  updateCountdownTimer('#timer-1', targetDate);

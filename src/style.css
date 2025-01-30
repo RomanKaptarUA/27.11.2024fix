@@ -396,7 +396,7 @@ button:hover {
   100% { color: red; }
 } */
 
-body{
+/* body{
   background-color: azure;
   padding: 20px;
   display: flex;
@@ -440,4 +440,27 @@ button:focus{
   margin-bottom: 50px;
   font-size: 20px;
   color: #212121;
+} */
+
+.timer{
+display: flex;
+font-family: Arial, sans-serif;
+font-size: 20px;
+gap: 10px;
+}
+
+.field {
+display: flex;
+flex-direction: column;
+text-align: center;
+}
+
+.value {
+font-size: 40px;
+font-weight: bold;
+}
+
+.label {
+font-size: 14px;
+color: #777;
 }
