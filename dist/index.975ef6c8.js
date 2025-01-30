@@ -1161,27 +1161,51 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // const endDate = '2025-01-24'
 // console.log(countBusinessDays(startDate, endDate));
 //Форма реєстрації
-const savedUser = JSON.parse(localStorage.getItem('user'));
-const form = document.getElementById('registrationForm');
-const welcomeDiv = document.getElementById('welcome');
-if (savedUser) {
-    welcomeDiv.textContent = `\u{41B}\u{430}\u{441}\u{43A}\u{430}\u{432}\u{43E} \u{43F}\u{440}\u{43E}\u{441}\u{438}\u{43C}\u{43E}, ${savedUser.name}!`;
-    form.style.display = 'none';
-}
-form.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const user = {
-        name,
-        email,
-        password
-    };
-    localStorage.setItem('user', JSON.stringify(user));
-    welcomeDiv.textContent = `\u{41B}\u{430}\u{441}\u{43A}\u{430}\u{432}\u{43E} \u{43F}\u{440}\u{43E}\u{441}\u{438}\u{43C}\u{43E}, ${savedUser.name}!`;
-    form.style.display = 'none';
+// const savedUser = JSON.parse(localStorage.getItem('user'));
+// const form = document.getElementById('registrationForm');
+// const welcomeDiv = document.getElementById('welcome');
+// if (savedUser) {
+//     welcomeDiv.textContent = `Ласкаво просимо, ${savedUser.name}!`;
+//     form.style.display = 'none';
+// }
+// form.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     const name = document.getElementById('name').value;
+//     const email = document.getElementById('email').value;
+//     const password = document.getElementById('password').value;
+//     const user = { name, email, password };
+//     localStorage.setItem('user', JSON.stringify(user));
+//     welcomeDiv.textContent = `Ласкаво просимо, ${savedUser.name}!`;
+//     form.style.display = 'none';
+// })
+////////////////////////////////////////////////////////////////
+// ПРОМІСИ
+// Юра Глуханюк
+const isActive = true;
+const one = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        if (isActive) resolve('Person is active');
+        else reject('Person isn*t active');
+    }, 2000);
 });
+// console.log('Before one.then()');
+// one.then(
+//     value => {
+//         console.log('onResolve one.then()')
+//         console.log(value);
+//     },
+//     error => {
+//         console.log('onReject one.then()')
+//         console.log(error);
+//     }
+// )
+// console.log('After one.then()');
+one.then((value)=>{
+    console.log(value);
+}).catch((error)=>{
+    console.log(error);
+})// використовуємо .finally() після завершення дії//
+.finally(()=>console.log('Promise settled'));
 
 },{}]},["9mu7C","8lqZg"], "8lqZg", "parcelRequire94c2")
 
