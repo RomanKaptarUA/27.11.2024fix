@@ -913,9 +913,9 @@
 // console.log('Before one.then()');
 
 // one.then(
-//     value => {
-//         console.log('onResolve one.then()')
-//         console.log(value);
+//     Resolve one.then()')
+//         console.log(valvalue => {
+//         console.log('onue);
 //     },
 //     error => {
 //         console.log('onReject one.then()')
@@ -940,43 +940,118 @@
 
 
 
-///////////////////////////////////
+// ///////////////////////////////////
 
-function updateCountdownTimer(selector, targetDate) {
-    const timerElement = document.querySelector(selector);
+// function updateCountdownTimer(selector, targetDate) {
+//     const timerElement = document.querySelector(selector);
   
-    const now = new Date();
-    const time = targetDate - now;
+//     const now = new Date();
+//     const time = targetDate - now;
   
-    if (time <= 0) {
-      clearInterval(timerInterval);
-      return;
-    }
+//     if (time <= 0) {
+//       clearInterval(timerInterval);
+//       return;
+//     }
   
-    const days = Math.floor(time / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((time % (1000 * 60)) / 1000);
+//     const days = Math.floor(time / (1000 * 60 * 60 * 24));
+//     const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//     const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+//     const secs = Math.floor((time % (1000 * 60)) / 1000);
   
-    displayTime(timerElement, days, hours, mins, secs);
+//     displayTime(timerElement, days, hours, mins, secs);
+//   }
+  
+//   function displayTime(timerElement, days, hours, mins, secs) {
+//     const dayElement = timerElement.querySelector('[data-value="days"]');
+//     const hourElement = timerElement.querySelector('[data-value="hours"]');
+//     const minElement = timerElement.querySelector('[data-value="mins"]');
+//     const secElement = timerElement.querySelector('[data-value="secs"]');
+  
+//     dayElement.textContent = days;
+//     hourElement.textContent = hours.toString().padStart(2, '0');
+//     minElement.textContent = mins.toString().padStart(2, '0');
+//     secElement.textContent = secs.toString().padStart(2, '0');
+//   }
+  
+//   const targetDate = new Date('June 1, 2025');
+  
+//   const timerInterval = setInterval(() => {
+//     updateCountdownTimer('#timer-1', targetDate);
+//   }, 1000);
+  
+//   updateCountdownTimer('#timer-1', targetDate);
+
+// const fetchUser = (userName, onSuccess, onError) => {
+//   setTimeout(() => {
+//     const isSuccess = true;
+
+//     if (isSuccess) {
+//       onSuccess('success value')
+//     } else {
+//       onError('error');
+//     }
+//   }, 1500);
+// }
+
+// const onFetchSuccess = user => {
+//   console.log(user);
+// } 
+
+// const onFetchError = error => {
+//   console.log(error);
+// };
+
+// fetchUser("Bob", onFetchSuccess, onFetchError);
+
+
+// const fetchUser = username => {
+//   return new Promise((resolve, reject) => {
+//     console.log(`Fetching ${username}`);
+    
+//     setTimeout(() => {
+//       const isSuccess = true;
+//       if (isSuccess) {
+//         resolve('Success value')
+//       } else {
+//         reject('error')
+//       }
+//     }, 1500)
+//   })
+// }
+
+// fetchUser("Bob")
+// .then(user => console.log(user))
+// .catch(user => console.error(error));
+
+// function  addNumbers(a, b){
+//   return new Promise((resolve, reject) => {
+//     if(typeof a !== 'number' || typeof b !== 'number') {
+//         reject('Невірні дані!')
+//     } else {
+//         resolve(a + b)
+//     }
+//   })
+// }
+
+// addNumbers(25, 66)
+// .then(result => console.log(`Result: ${result}`))
+// .catch(result => console.error(`Result: ${error}`))
+
+///////////////////////////////////////////////////////
+
+function checkEven(numbers) {
+return new Promise((resolve, reject) => {
+  if(!Array.isArray(numbers) || numbers.some(num => typeof num !== 'number')){
+    reject('невірні дані!')
+  } else if(numbers.some(num => num % 2 !== 0)){
+    reject('непарні числа!')
+  } else {
+     resolve('Все вірно!')
   }
-  
-  function displayTime(timerElement, days, hours, mins, secs) {
-    const dayElement = timerElement.querySelector('[data-value="days"]');
-    const hourElement = timerElement.querySelector('[data-value="hours"]');
-    const minElement = timerElement.querySelector('[data-value="mins"]');
-    const secElement = timerElement.querySelector('[data-value="secs"]');
-  
-    dayElement.textContent = days;
-    hourElement.textContent = hours.toString().padStart(2, '0');
-    minElement.textContent = mins.toString().padStart(2, '0');
-    secElement.textContent = secs.toString().padStart(2, '0');
-  }
-  
-  const targetDate = new Date('June 1, 2025');
-  
-  const timerInterval = setInterval(() => {
-    updateCountdownTimer('#timer-1', targetDate);
-  }, 1000);
-  
-  updateCountdownTimer('#timer-1', targetDate);
+}) 
+}
+const numbers = [2, 4, 6, 8, 10];
+
+checkEven(numbers)
+.then(message => console.log('Успіх: ', message))
+.then(error => console.error(error));
