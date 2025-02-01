@@ -1054,4 +1054,4 @@ const numbers = [2, 4, 6, 8, 10];
 
 checkEven(numbers)
 .then(message => console.log('Успіх: ', message))
-.then(error => console.error(error));
+.then(error => console.error(error)); //Слава УкраЇні!
