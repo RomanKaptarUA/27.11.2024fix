@@ -1039,19 +1039,105 @@
 
 ///////////////////////////////////////////////////////
 
-function checkEven(numbers) {
-return new Promise((resolve, reject) => {
-  if(!Array.isArray(numbers) || numbers.some(num => typeof num !== 'number')){
-    reject('невірні дані!')
-  } else if(numbers.some(num => num % 2 !== 0)){
-    reject('непарні числа!')
-  } else {
-     resolve('Все вірно!')
-  }
-}) 
-}
-const numbers = [2, 4, 6, 8, 10];
+// function checkEven(numbers) {
+// return new Promise((resolve, reject) => {
+//   if(!Array.isArray(numbers) || numbers.some(num => typeof num !== 'number')){
+//     reject('невірні дані!')
+//   } else if(numbers.some(num => num % 2 !== 0)){
+//     reject('непарні числа!')
+//   } else {
+//      resolve('Все вірно!')
+//   }
+// }) 
+// }
+// const numbers = [2, 4, 6, 8, 10];
 
-checkEven(numbers)
-.then(message => console.log('Успіх: ', message))
-.then(error => console.error(error)); //Слава УкраЇні!
+// checkEven(numbers)
+// .then(message => console.log('Успіх: ', message))
+// .then(error => console.error(error)); //Слава УкраЇні!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////
+
+//1
+// Напиши функцію delay(ms),
+//  яка повертає проміс,
+//  що переходить в стан "resolved"
+//  через ms мілісекунд. Значенням промісу,
+//  яке виповнилося має бути та кількість мілісекунд,
+//  яку передали під час виклику функції delay.
+
+
+
+const delay = ms => {
+  return new Promise(resolve => setTimeout(() => resolve(ms), ms));
+};
+
+const logger = time => console.log(`Resolved after ${time} ms`);
+
+
+
+delay(2000).then(logger); // Resolved after 2000ms
+delay(1000).then(logger); // Resolved after 1000ms
+delay(1500).then(logger); // Resolved after 1500ms
+///////////////////////////////////////////////////////////////////////////
+//2
+const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+const makeTransaction = transaction => {
+  const delay = randomIntegerFromInterval(200, 500);
+
+   return new Promise((resolve, reject) => {
+    setTimeout(() => {
+        const canProcess = Math.random() > 0.3;
+    
+        if (canProcess) {
+          resolve ({ id: transaction.id, time: delay });
+        } else {
+      reject (transaction.id);
+        }
+      }, delay);
+   })
+  }
+
+const logSuccess = ({ id, time }) => {
+  console.log(`Transaction ${id} processed in ${time}ms`);
+};
+
+const logError = id => {
+  console.warn(`Error processing transaction ${id}. Please try again later.`);
+};
+
+makeTransaction({ id: 70, amount: 150 })
+  .then(logSuccess)
+  .catch(logError);
+
+makeTransaction({ id: 71, amount: 230 })
+  .then(logSuccess)
+  .catch(logError);
+
+makeTransaction({ id: 72, amount: 75 })
+  .then(logSuccess)
+  .catch(logError);
+
+makeTransaction({ id: 73, amount: 100 })
+  .then(logSuccess)
+  .catch(logError);
