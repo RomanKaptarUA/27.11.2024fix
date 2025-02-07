@@ -1268,3 +1268,75 @@
 //  makePromise('Bob')
 //  .then((success) => console.log(success))
 //  .catch((error) => console.error(error))
+
+///////////////////////////////////////////////////////////////////////
+
+//trycatch -- забіги
+
+const horses = [
+  'Хейлі',
+  'Сем',
+  'Аліса',
+  'Георгій',
+  'Луїза'
+];
+
+let raceCounter = 0;
+
+const refs = {
+  startBtn: document.querySelector('.js-start-race'),
+  winnerField: document.querySelector('.js-winner'),
+  progressField: document.querySelector('.js-progress'),
+  tableBody: document.querySelector('.js-results-table > tbody')
+}
+
+refs.startBtn.addEventListener('click', onStart);
+
+function onStart() {
+  raceCounter += 1;
+  const promises = horses.map(run);
+  updateWinnerField('');
+  updateProgressField('Забіг вже розпочався, ставки не приймаються');
+  determineWinner(promises);
+  waitForAll(promises) 
+}
+
+function determineWinner(horsesP) {
+ Promise.race(horsesP).then(({horse, time}) => {
+  updateWinnerField(` 🎉 Переможець ${horse}, фінішував за ${time}`)  
+  updateResultTable({ horse, time, raceCounter });
+ })
+}
+
+function waitForAll(horseP) {
+     Promise.all(promises).then(() => {
+    updateProgressField('Забіг закінчено, ставки знову приймається!!')
+     })
+}
+
+function updateWinnerField(message) {
+  refs.winnerField.textContent = message;
+}
+
+function updateProgressField(message) {
+  refs.progressField.textContent = message;
+}
+
+function updateResultTable({ horse, time, raceCounter }) {
+  const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`
+  refs.tableBody.insertAdjacentHTML('beforeend', tr)
+}
+
+function run(horse) {
+  return new Promise(resolve => {
+    const time = getRandomTime(1500, 3000);
+    
+    setTimeout(() => {
+      resolve({ horse, time })
+    }, time)
+  }); 
+};
+
+function getRandomTime(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
