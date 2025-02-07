@@ -1085,59 +1085,186 @@
 
 
 
-const delay = ms => {
-  return new Promise(resolve => setTimeout(() => resolve(ms), ms));
-};
+// const delay = ms => {
+//   return new Promise(resolve => setTimeout(() => resolve(ms), ms));
+// };
 
-const logger = time => console.log(`Resolved after ${time} ms`);
+// const logger = time => console.log(`Resolved after ${time} ms`);
 
 
 
-delay(2000).then(logger); // Resolved after 2000ms
-delay(1000).then(logger); // Resolved after 1000ms
-delay(1500).then(logger); // Resolved after 1500ms
-///////////////////////////////////////////////////////////////////////////
-//2
-const randomIntegerFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
+// delay(2000).then(logger); // Resolved after 2000ms
+// delay(1000).then(logger); // Resolved after 1000ms
+// delay(1500).then(logger); // Resolved after 1500ms
+// ///////////////////////////////////////////////////////////////////////////
+// //2
+// const randomIntegerFromInterval = (min, max) => {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// };
 
-const makeTransaction = transaction => {
-  const delay = randomIntegerFromInterval(200, 500);
+// const makeTransaction = transaction => {
+//   const delay = randomIntegerFromInterval(200, 500);
 
-   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-        const canProcess = Math.random() > 0.3;
+//    return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         const canProcess = Math.random() > 0.3;
     
-        if (canProcess) {
-          resolve ({ id: transaction.id, time: delay });
-        } else {
-      reject (transaction.id);
-        }
-      }, delay);
-   })
-  }
+//         if (canProcess) {
+//           resolve ({ id: transaction.id, time: delay });
+//         } else {
+//       reject (transaction.id);
+//         }
+//       }, delay);
+//    })
+//   }
 
-const logSuccess = ({ id, time }) => {
-  console.log(`Transaction ${id} processed in ${time}ms`);
-};
+// const logSuccess = ({ id, time }) => {
+//   console.log(`Transaction ${id} processed in ${time}ms`);
+// };
 
-const logError = id => {
-  console.warn(`Error processing transaction ${id}. Please try again later.`);
-};
+// const logError = id => {
+//   console.warn(`Error processing transaction ${id}. Please try again later.`);
+// };
 
-makeTransaction({ id: 70, amount: 150 })
-  .then(logSuccess)
-  .catch(logError);
+// makeTransaction({ id: 70, amount: 150 })
+//   .then(logSuccess)
+//   .catch(logError);
 
-makeTransaction({ id: 71, amount: 230 })
-  .then(logSuccess)
-  .catch(logError);
+// makeTransaction({ id: 71, amount: 230 })
+//   .then(logSuccess)
+//   .catch(logError);
 
-makeTransaction({ id: 72, amount: 75 })
-  .then(logSuccess)
-  .catch(logError);
+// makeTransaction({ id: 72, amount: 75 })
+//   .then(logSuccess)
+//   .catch(logError);
 
-makeTransaction({ id: 73, amount: 100 })
-  .then(logSuccess)
-  .catch(logError);
+// makeTransaction({ id: 73, amount: 100 })
+//   .then(logSuccess)
+//   .catch(logError);
+
+  ////////////////////////////////////////////////
+
+//   const makePromise = (text, delay) => {
+//     return new Promise(resolve => {
+//       setTimeout(()=> resolve(text), delay)
+//     })
+//   }
+
+// const promiseOne = makePromise('promise one', 1500);
+// const promiseTwo = makePromise('promise two', 1000);
+
+// Promise.all([promiseOne, promiseTwo])
+// .then((value) => {
+//       console.log(value);
+// })
+// .catch((error) => {
+//   console.log(error);
+// })
+
+// // race
+// Promise.race([promiseOne, promiseTwo])
+// .then((value) => {
+//       console.log(value);
+// })
+// .catch((error) => {
+//   console.log(error);
+// })
+
+// any
+
+// Promise.any([
+//      new Promise((resolve, reject) =>
+//      setTimeout(() => reject(new Error('Oops!')), 1000)
+//  ),
+//   new Promise((resolve, reject) =>
+//   setTimeout(() => reject(new Error('Error!')), 1000)
+//  ),
+// ]).catch(error => {
+//     console.log(error); // AggregateError: All promises were rejected
+//     console.log(error.errors[0]); //Error: Oops!
+//     console.log(error.errors[1]); //Error: Error!
+// })
+
+//////////////////////////////////////////////
+
+// Promise.any([
+//   new Promise((resolve, reject) =>
+//   setTimeout(() => reject(new Error('Oops!')), 1000)
+// ),
+// new Promise((resolve, reject) => setTimeout(() => resolve('Успіх!'), 1500)),
+// new Promise((resolve, reject) =>
+// setTimeout(() => reject(new Error('Error!')), 1000)
+// ),
+// ]).then(value => console.log(value))
+// .catch(error => console.log(error));
+
+////////////////////////////////////////////////////////////
+//resolved
+
+//1
+// new Promise(resolve => resolve('success')).then(value => console.log(value));
+// //2
+// Promise.resolve('success').then(value => console.log(value));
+
+//////////////////////////////////////////////////////////////
+//rejected
+
+//1
+// new Promise((resolve, reject) => reject('error')).catch(error => console.log(error));
+//2
+// Promise.reject('error').catch(error => console.log(error));
+
+//////////////////////////////////////////////////////////////////////
+
+//1
+
+// const makePromise = guestName => {
+  // if(guestName === '' || guestName === undefined){
+//     return{
+//       success: false,
+//       message: 'Error guest name'
+//     }
+//   }
+//   return{
+//     success: true,
+    // message: `Welcome ${guestName}`,
+//   };
+// }
+
+// const result = makePromise('Bob')
+
+// if ( result.success){
+//   console.log(result.message)
+// } else {
+//    console.error(result.message)
+// }
+
+///////////////////////////////////////////////////////////////////////
+
+//2
+
+// const makePromise = (guestName, onSuccess, onError) => {
+//   if(guestName === '' || guestName === undefined){
+//     return onError('Error guest name');
+//   }
+//   onSuccess(`Welcome ${guestName}`)
+// }
+
+// makePromise('Bob',
+//   success => console.log(success),
+//   error => console.log(error)
+//  )
+
+//////////////////////////////////////////////////////////////////////////
+
+ //3
+
+//  const makePromise = guestName => {
+//       if (guestName === '' || guestName === undefined) {
+//         return Promise.reject('Error guest name');
+//       }
+//       return Promise.resolve(`Welcome ${guestName}`);
+//  }
+//  makePromise('Bob')
+//  .then((success) => console.log(success))
+//  .catch((error) => console.error(error))
