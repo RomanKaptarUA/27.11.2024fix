@@ -1273,70 +1273,122 @@
 
 //trycatch -- забіги
 
-const horses = [
-  'Хейлі',
-  'Сем',
-  'Аліса',
-  'Георгій',
-  'Луїза'
-];
+// const horses = [
+//   'Хейлі',
+//   'Сем',
+//   'Аліса',
+//   'Георгій',
+//   'Луїза'
+// ];
 
-let raceCounter = 0;
+// let raceCounter = 0;
 
-const refs = {
-  startBtn: document.querySelector('.js-start-race'),
-  winnerField: document.querySelector('.js-winner'),
-  progressField: document.querySelector('.js-progress'),
-  tableBody: document.querySelector('.js-results-table > tbody')
-}
+// const refs = {
+//   startBtn: document.querySelector('.js-start-race'),
+//   winnerField: document.querySelector('.js-winner'),
+//   progressField: document.querySelector('.js-progress'),
+//   tableBody: document.querySelector('.js-results-table > tbody')
+// }
 
-refs.startBtn.addEventListener('click', onStart);
+// refs.startBtn.addEventListener('click', onStart);
 
-function onStart() {
-  raceCounter += 1;
-  const promises = horses.map(run);
-  updateWinnerField('');
-  updateProgressField('Забіг вже розпочався, ставки не приймаються');
-  determineWinner(promises);
-  waitForAll(promises) 
-}
+// function onStart() {
+//   raceCounter += 1;
+//   const promises = horses.map(run);
+//   updateWinnerField('');
+//   updateProgressField('Забіг вже розпочався, ставки не приймаються');
+//   determineWinner(promises);
+//   waitForAll(promises) 
+// }
 
-function determineWinner(horsesP) {
- Promise.race(horsesP).then(({horse, time}) => {
-  updateWinnerField(` 🎉 Переможець ${horse}, фінішував за ${time}`)  
-  updateResultTable({ horse, time, raceCounter });
- })
-}
+// function determineWinner(horsesP) {
+//  Promise.race(horsesP).then(({horse, time}) => {
+//   updateWinnerField(` 🎉 Переможець ${horse}, фінішував за ${time}`)  
+//   updateResultTable({ horse, time, raceCounter });
+//  })
+// }
 
-function waitForAll(horseP) {
-     Promise.all(promises).then(() => {
-    updateProgressField('Забіг закінчено, ставки знову приймається!!')
-     })
-}
+// function waitForAll(horseP) {
+//      Promise.all(promises).then(() => {
+//     updateProgressField('Забіг закінчено, ставки знову приймається!!')
+//      })
+// }
 
-function updateWinnerField(message) {
-  refs.winnerField.textContent = message;
-}
+// function updateWinnerField(message) {
+//   refs.winnerField.textContent = message;
+// }
 
-function updateProgressField(message) {
-  refs.progressField.textContent = message;
-}
+// function updateProgressField(message) {
+//   refs.progressField.textContent = message;
+// }
 
-function updateResultTable({ horse, time, raceCounter }) {
-  const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`
-  refs.tableBody.insertAdjacentHTML('beforeend', tr)
-}
+// function updateResultTable({ horse, time, raceCounter }) {
+//   const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`
+//   refs.tableBody.insertAdjacentHTML('beforeend', tr)
+// }
 
-function run(horse) {
-  return new Promise(resolve => {
-    const time = getRandomTime(1500, 3000);
+// function run(horse) {
+//   return new Promise(resolve => {
+//     const time = getRandomTime(1500, 3000);
     
-    setTimeout(() => {
-      resolve({ horse, time })
-    }, time)
-  }); 
-};
+//     setTimeout(() => {
+//       resolve({ horse, time })
+//     }, time)
+//   }); 
+// };
 
-function getRandomTime(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+// function getRandomTime(min, max) {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// }
+///////////////////////////////////////////////////
+//AJAX
+
+// const button = document.getElementById("getCatFact");
+// const p = document.getElementById("catFact");
+
+// button.addEventListener('click', () => {
+//   fetch("https://catfact.ninja/fact")
+//   .then(response => response.json())
+//   .then(data => {
+//     p.textContent = data.fact;
+//   })
+//   .catch(error => {
+//     p.textContent = "Сталася помилка 😿";
+//     console.log("Error: ", error)
+//   })
+// })
+
+///////////////////////////////////////////////////
+
+const fetchUsersBtn = document.getElementById('btn');
+const userList = document.querySelector('.users-list');
+
+fetchUsersBtn.addEventListener('click', () => {
+      fetchUsers()
+        .then((users) => renderUsers(users))
+        .catch((error) => console.log(error))
+});
+
+function fetchUsers() {
+  return fetch("https://jsonplaceholder.typicode.com/users")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+    return response.json();
+  });
+}
+
+function renderUsers(users) {
+  const markup = users
+  .map((user) => {
+    return `<li>
+    <p><b>Name: </b>${user.name}</p>
+    <p><b>Email: </b>${user.email}</p>
+    <p><b>Company: </b>${user.company.name}</p>
+  </li>`;
+  })
+  .join('');
+
+  userList.insertAdjacentHTML('beforeend', markup);
 }
