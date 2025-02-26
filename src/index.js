@@ -1360,35 +1360,67 @@
 
 ///////////////////////////////////////////////////
 
-const fetchUsersBtn = document.getElementById('btn');
-const userList = document.querySelector('.users-list');
 
-fetchUsersBtn.addEventListener('click', () => {
-      fetchUsers()
-        .then((users) => renderUsers(users))
-        .catch((error) => console.log(error))
-});
+// щоб був ліміт після fetch == ?_limit=2
+// сорт // після limit == &_sort=name
+// const fetchUsersBtn = document.getElementById('btn');
+// const userList = document.querySelector('.users-list');
 
-function fetchUsers() {
-  return fetch("https://jsonplaceholder.typicode.com/users")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(response.status)
-    }
-    return response.json();
-  });
+// fetchUsersBtn.addEventListener('click', () => {
+//       fetchUsers()
+//         .then((users) => renderUsers(users))
+//         .catch((error) => console.log(error))
+// });
+
+// function fetchUsers() {
+//   return fetch("https://jsonplaceholder.typicode.com/users?_limit=2&_sort=name")
+//   .then((response) => {
+//     if (!response.ok) {
+//       throw new Error(response.status)
+//     }
+//     return response.json();
+//   });
+// }
+
+// function renderUsers(users) {
+//   const markup = users
+//   .map((user) => {
+//     return `<li>
+//     <p><b>Name: </b>${user.name}</p>
+//     <p><b>Email: </b>${user.email}</p>
+//     <p><b>Company: </b>${user.company.name}</p>
+//   </li>`;
+//   })
+//   .join('');
+
+//   userList.insertAdjacentHTML('beforeend', markup);
+// }
+
+/////////////////
+// або
+
+// const searchParams = new URLSearchParams({
+//   _limit: 3,
+//   _sort: "name",
+// })
+// console.log(searchParams.toString());
+// // або
+
+// const url = `https://jsonplaceholder.typicode.com/users?${searchParams}`;
+// console.log(url);
+
+////////////////////////////////
+
+const headers = {
+  "Accept": "application/json",
+  "Content-Type": "application/json",
+  "X-Custom-Header": "custom value",
+  "Authorization": "YOUR_API_TOKEN"
 }
 
-function renderUsers(users) {
-  const markup = users
-  .map((user) => {
-    return `<li>
-    <p><b>Name: </b>${user.name}</p>
-    <p><b>Email: </b>${user.email}</p>
-    <p><b>Company: </b>${user.company.name}</p>
-  </li>`;
-  })
-  .join('');
-
-  userList.insertAdjacentHTML('beforeend', markup);
-}
+fetch("https://api.example.com/data", {
+  method: "GET",
+  headers: headers,
+}).then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error("Error:", error));
