@@ -1428,39 +1428,92 @@
 //////////////////////////////////////////////
 // покемони
 
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('.js-search-form');
-  const cardContainer = document.querySelector('.js-card-container');
+// document.addEventListener('DOMContentLoaded', () => {
+//   const form = document.querySelector('.js-search-form');
+//   const cardContainer = document.querySelector('.js-card-container');
 
-  if (!form || !cardContainer){
-    console.error('Форма або контейнер не знайдені');
-    return;
-  }
+//   if (!form || !cardContainer){
+//     console.error('Форма або контейнер не знайдені');
+//     return;
+//   }
 
-  form.addEventListener('submit', async (e) => {
+//   form.addEventListener('submit', async (e) => {
+//     e.preventDefault();
+//     const query = form.query.value.trim().toLowerCase();
+//     if (!query) return;
+
+//       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+//       if (response.ok) {
+//         const data = await response.json();
+//         render(data);
+//       } else {
+//         cardContainer.innerHTML = `<p class="error">Покемон не знайдений</p>`
+//       }
+//       form.reset();
+//   });
+
+//   function render(pokemon) {
+//           cardContainer.innerHTML = `
+//        <div class="card">
+//         <h2>${pokemon.name}</h2>
+//         <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+//         <p><strong>Вага: </strong>${pokemon.weight}</p>
+//         <p><strong>Зріст: </strong>${pokemon.height}</p>
+//        </div>
+//        `;
+//   }
+
+// })
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("inputEl");
+  const form = document.getElementById("formEl");
+  const listBody = document.querySelector('.news-list');
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const query = form.query.value.trim().toLowerCase();
-    if (!query) return;
-
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
-      if (response.ok) {
-        const data = await response.json();
-        render(data);
-      } else {
-        cardContainer.innerHTML = `<p class="error">Покемон не знайдений</p>`
-      }
-      form.reset();
+    const topic = input.value;
+    if (!topic) {
+      alert("Field can not be empty");
+    } else {
+      listBody.innerHTML = '';
+      fetchNews(topic);
+      input.value = '';
+    }
   });
 
-  function render(pokemon) {
-          cardContainer.innerHTML = `
-       <div class="card">
-        <h2>${pokemon.name}</h2>
-        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-        <p><strong>Вага: </strong>${pokemon.weight}</p>
-        <p><strong>Зріст: </strong>${pokemon.height}</p>
-       </div>
-       `;
+  function fetchNews(topic) {
+    const API_key = "abcce331db6348159c386666cbebddb7";
+    const data = fetch(
+      `https://newsapi.org/v2/everything?q=${topic}&apiKey=${API_key}&pageSize=10`
+    )
+      .then((response) => response.json())
+      .then((general) => {
+        if (general.status == 'ok') {
+          renderNews(general.articles);
+        } else {
+          console.error(general.status);
+          alert('We have some problems');
+        }
+      })
+      .catch((error) => {
+        console.error(error) 
+        alert('We can not find this topic. Try again');
+      });
   }
 
-})
+  function renderNews(articles) {
+    const markup = articles.map(article => {
+      return `<li class="news-item">
+            <div class="news-wrap">
+                <p class="author">${article.author}</p>
+                <h3 class="title">${article.title}</h3>
+                <p class="description">${article.description}</p>
+            </div>
+            <img src="${article.urlToImage}" alt="${article.title} image" class="image">
+        </li>`;
+    });
+    listBody.insertAdjacentHTML('beforeend', markup.join(''));
+  }
+});
