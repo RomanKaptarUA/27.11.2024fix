@@ -233,14 +233,25 @@
     
     <!-- //////////////////////////////////////////////////////// -->
      
-    <h2 class="news">Новини</h2>
+    <!-- <h2 class="news">Новини</h2>
     <form id="formEl">
       <input type="text" placeholder="Ваш запит" id="inputEl">
       <button type="submit" class="btn" id="btn">Натисни тут!</button>
     </form>
-    <ul class="news-list"></ul>
+    <ul class="news-list"></ul> -->
+
+    <!-- /////////////////////////////////////////////////////////////////////// -->
 
 
+    <div class="wrapper">
+      <form class="js-search-form">
+        <label>що шукаємо?</label>
+        <input type="text" name="query">
+        <button type="submit" class="btn-form">Search</button>
+      </form>
+      <ul class="js-articles"></ul>
+      <button type="button" class="btn" data-action="load-more"></button>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
     <script type="module" src="./src/index.js"></script>

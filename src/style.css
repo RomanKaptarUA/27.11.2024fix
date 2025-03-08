@@ -559,3 +559,46 @@ button{
 .error{
   color: red;
 } */
+
+/* ////////////////////////////////////////////////////////////////////*/
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.js-search-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-color: rgb(224, 246, 255);
+  padding: 30px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  margin-top: 30px;
+  gap: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.btn-form,
+.btn{
+  background-color: rgb(0, 0, 116);
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.js-articles{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

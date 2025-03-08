@@ -1467,53 +1467,103 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("inputEl");
-  const form = document.getElementById("formEl");
-  const listBody = document.querySelector('.news-list');
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const topic = input.value;
-    if (!topic) {
-      alert("Field can not be empty");
-    } else {
-      listBody.innerHTML = '';
-      fetchNews(topic);
-      input.value = '';
-    }
-  });
+// document.addEventListener("DOMContentLoaded", () => {
+//   const input = document.getElementById("inputEl");
+//   const form = document.getElementById("formEl");
+//   const listBody = document.querySelector('.news-list');
+//   form.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const topic = input.value;
+//     if (!topic) {
+//       alert("Field can not be empty");
+//     } else {
+//       listBody.innerHTML = '';
+//       fetchNews(topic);
+//       input.value = '';
+//     }
+//   });
 
-  function fetchNews(topic) {
-    const API_key = "abcce331db6348159c386666cbebddb7";
-    const data = fetch(
-      `https://newsapi.org/v2/everything?q=${topic}&apiKey=${API_key}&pageSize=10`
-    )
-      .then((response) => response.json())
-      .then((general) => {
-        if (general.status == 'ok') {
-          renderNews(general.articles);
-        } else {
-          console.error(general.status);
-          alert('We have some problems');
-        }
-      })
-      .catch((error) => {
-        console.error(error) 
-        alert('We can not find this topic. Try again');
-      });
-  }
+//   function fetchNews(topic) {
+//     const API_key = "abcce331db6348159c386666cbebddb7";
+//     const data = fetch(
+//       `https://newsapi.org/v2/everything?q=${topic}&apiKey=${API_key}&pageSize=10`
+//     )
+//       .then((response) => response.json())
+//       .then((general) => {
+//         if (general.status == 'ok') {
+//           renderNews(general.articles);
+//         } else {
+//           console.error(general.status);
+//           alert('We have some problems');
+//         }
+//       })
+//       .catch((error) => {
+//         console.error(error) 
+//         alert('We can not find this topic. Try again');
+//       });
+//   }
 
-  function renderNews(articles) {
-    const markup = articles.map(article => {
-      return `<li class="news-item">
-            <div class="news-wrap">
-                <p class="author">${article.author}</p>
-                <h3 class="title">${article.title}</h3>
-                <p class="description">${article.description}</p>
-            </div>
-            <img src="${article.urlToImage}" alt="${article.title} image" class="image">
-        </li>`;
-    });
-    listBody.insertAdjacentHTML('beforeend', markup.join(''));
-  }
-});
+//   function renderNews(articles) {
+//     const markup = articles.map(article => {
+//       return `<li class="news-item">
+//             <div class="news-wrap">
+//                 <p class="author">${article.author}</p>
+//                 <h3 class="title">${article.title}</h3>
+//                 <p class="description">${article.description}</p>
+//             </div>
+//             <img src="${article.urlToImage}" alt="${article.title} image" class="image">
+//         </li>`;
+//     });
+//     listBody.insertAdjacentHTML('beforeend', markup.join(''));
+//   }
+// });
+
+//////////////////////////////////////////////////////////////////////////////////////
+// пагінація
+
+const refs = {
+  searchForm: document.querySelector(".js-search-form"),
+  articlesContainer: document.querySelector(".js-articles"),
+  loadMoreBtn: document.querySelector('[data-action="load-more"]')
+};
+
+refs.searchForm.addEventListener("submit", onSearch);
+//=> =>
+refs.loadMoreBtn.addEventListener("click", onLoadMore);
+
+function onSearch(e) {
+e.preventDefault();
+
+const searchQuery = e.currentTarget.elements.query.value;
+
+const options = {
+  headers: {
+    Authorization: "d47ea7990cea4d34a207f7630f77824c",
+  },
+};
+const url =`https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`;
+fetch(url, options)
+.then(r => r.json())
+.then(console.log)
+}
+
+
+
+
+
+function onLoadMore() {
+  const searchQuery = e.currentTarget.elements.query.value;
+
+const options = {
+  headers: {
+    Authorization: "d47ea7990cea4d34a207f7630f77824c",
+  },
+};
+
+fetch(
+  `https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`,
+ options
+)
+.then(r => r.json())
+.then(console.log)
+}
