@@ -1521,49 +1521,52 @@
 //////////////////////////////////////////////////////////////////////////////////////
 // пагінація
 
-const refs = {
-  searchForm: document.querySelector(".js-search-form"),
-  articlesContainer: document.querySelector(".js-articles"),
-  loadMoreBtn: document.querySelector('[data-action="load-more"]')
-};
+// const refs = {
+//   searchForm: document.querySelector(".js-search-form"),
+//   articlesContainer: document.querySelector(".js-articles"),
+//   loadMoreBtn: document.querySelector('[data-action="load-more"]')
+// };
 
-refs.searchForm.addEventListener("submit", onSearch);
-//=> =>
-refs.loadMoreBtn.addEventListener("click", onLoadMore);
+// refs.searchForm.addEventListener("submit", onSearch);
+// //=> =>
+// refs.loadMoreBtn.addEventListener("click", onLoadMore);
 
-function onSearch(e) {
-e.preventDefault();
+// function onSearch(e) {
+// e.preventDefault();
 
-const searchQuery = e.currentTarget.elements.query.value;
+// const searchQuery = e.currentTarget.elements.query.value;
 
-const options = {
-  headers: {
-    Authorization: "d47ea7990cea4d34a207f7630f77824c",
-  },
-};
-const url =`https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`;
-fetch(url, options)
-.then(r => r.json())
-.then(console.log)
-}
-
-
+// const options = {
+//   headers: {
+//     Authorization: "d47ea7990cea4d34a207f7630f77824c",
+//   },
+// };
+// const url =`https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`;
+// fetch(url, options)
+// .then(r => r.json())
+// .then(console.log)
+// }
 
 
 
-function onLoadMore() {
-  const searchQuery = e.currentTarget.elements.query.value;
 
-const options = {
-  headers: {
-    Authorization: "d47ea7990cea4d34a207f7630f77824c",
-  },
-};
 
-fetch(
-  `https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`,
- options
-)
-.then(r => r.json())
-.then(console.log)
-}
+// function onLoadMore() {
+//   const searchQuery = e.currentTarget.elements.query.value;
+
+// const options = {
+//   headers: {
+//     Authorization: "d47ea7990cea4d34a207f7630f77824c",
+//   },
+// };
+
+// fetch(
+//   `https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`,
+//  options
+// )
+// .then(r => r.json())
+// .then(console.log)
+// }
+
+/////////////////////////////////////////////////////////////////////////////////
+
