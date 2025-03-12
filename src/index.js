@@ -1551,75 +1551,19 @@
 
 
 
-// function onLoadMore() {
-//   const searchQuery = e.currentTarget.elements.query.value;
+function onLoadMore() {
+  const searchQuery = e.currentTarget.elements.query.value;
 
-// const options = {
-//   headers: {
-//     Authorization: "d47ea7990cea4d34a207f7630f77824c",
-//   },
-// };
+const options = {
+  headers: {
+    Authorization: "d47ea7990cea4d34a207f7630f77824c",
+  },
+};
 
-// fetch(
-//   `https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`,
-//  options
-// )
-// .then(r => r.json())
-// .then(console.log)
-// }
-
-/////////////////////////////////////////////////////////////////////////////////
-
-// ДЗ Тема 14. Методи класу Promise. Цикл подій
-
-//1
-
-// const makePromise = (text, delay) => {
-//       return new Promise(delayedPromise => {
-//         setTimeout(() => delayedPromise(text), delay)
-//       })
-//     }
-  
-//   const promiseOne = makePromise('promise one', 1500);
-//   const promiseTwo = makePromise('promise two', 1000);
-//   const promiseThree = makePromise('promise three', 2500)  
-//   const promiseFour = makePromise('promise four', 4000) 
-//   const promiseFive = makePromise('promise five', 2200)   
-  
-//   Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour, promiseFive])
-//   .then((value) => {
-//         console.log(value);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   })
-
-//2
-
-const makePromise = (text, delay) => {
-      return new Promise(delayedPromise => {
-        setTimeout(() => delayedPromise(text), delay)
-      })
-    }
-  
-
-    // delay щоб було на рандом я так зробив
-    const randomDelayOne = Math.floor(Math.random() * (2000 - 1000 + 1)) + 1000;
-    const randomDelayTwo = Math.floor(Math.random() * (2000 - 500 + 1)) + 500;
-    const randomDelayThree = Math.floor(Math.random() * (3000 - 1500 + 1)) + 1500;
-    const randomDelayFour = Math.floor(Math.random() * (5000 - 3000 + 1)) + 3000;
-    const randomDelayFive = Math.floor(Math.random() * (3000 - 1500 + 1)) + 1500;
-    
-    const promiseOne = makePromise('promise one', randomDelayOne);
-    const promiseTwo = makePromise('promise two', randomDelayTwo);
-    const promiseThree = makePromise('promise three', randomDelayThree);
-    const promiseFour = makePromise('promise four', randomDelayFour);
-    const promiseFive = makePromise('promise five', randomDelayFive);
-  
-  Promise.race([promiseOne, promiseTwo, promiseThree, promiseFour, promiseFive])
-.then((value) => {
-      console.log(value);
-})
-.catch((error) => {
-  console.log(error);
-})
+fetch(
+  `https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`,
+ options
+)
+.then(r => r.json())
+.then(console.log)
+}
