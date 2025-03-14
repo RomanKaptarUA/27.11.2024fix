@@ -1633,9 +1633,30 @@
 // .catch(error => console.log(error));
 
 //DELETE
-const deletePost = 200;
-fetch(`https://jsonplaceholder.typicode.com/posts/${deletePost}`, {
-  method: "DELETE",
-})
-.then(() => console.log('Post deleted'))
-.catch(error => console.log(error));
+// const deletePost = 200;
+// fetch(`https://jsonplaceholder.typicode.com/posts/${deletePost}`, {
+//   method: "DELETE",
+// })
+// .then(() => console.log('Post deleted'))
+// .catch(error => console.log(error));
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+const apiKey = '49340617-5f7223bcca914867675ecc2b9';
+    function loadImages() {
+   fetch(`https://pixabay.com/api/?key=${apiKey}&editors_choice=true&per_page=5&page=1`)
+        .then(response => response.json())
+        .then(data => {
+          const gallery = document.getElementById('image-gallery');
+          data.hits.forEach(hit => {
+            const imgElement = document.createElement('img');
+            imgElement.src = hit.previewURL;
+            imgElement.alt = hit.tags;
+            gallery.appendChild(imgElement);
+          });
+          currentPage++;
+        })
+        .catch(error => console.log('Error fetching images:', error));
+    }
+    document.getElementById('load-more-btn').addEventListener('click', loadImages);
