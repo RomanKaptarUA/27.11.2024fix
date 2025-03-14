@@ -1551,19 +1551,91 @@
 
 
 
-function onLoadMore() {
-  const searchQuery = e.currentTarget.elements.query.value;
+// function onLoadMore() {
+//   const searchQuery = e.currentTarget.elements.query.value;
 
-const options = {
-  headers: {
-    Authorization: "d47ea7990cea4d34a207f7630f77824c",
-  },
-};
+// const options = {
+//   headers: {
+//     Authorization: "d47ea7990cea4d34a207f7630f77824c",
+//   },
+// };
 
-fetch(
-  `https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`,
- options
-)
-.then(r => r.json())
-.then(console.log)
-}
+// fetch(
+//   `https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`,
+//  options
+// )
+// .then(r => r.json())
+// .then(console.log)
+// }
+
+
+
+
+
+
+
+
+//////////////////////////////////////
+// CRUD
+
+
+// GET
+// fetch("https://jsonplaceholder.typicode.com/albums/100")
+// .then(response => response.json())
+// .then(data => console.log(data));
+
+//POST
+// const postAdd = {
+//   author: "Anna",
+//   body: "CRUD",
+// }
+
+// const options = {
+//   method: "POST",
+//   body: JSON.stringify(postAdd),
+//   headers: {
+//     "Content-Type": "application/json"
+//   }
+// }
+
+// fetch("https://jsonplaceholder.typicode.com/posts", {
+//       method:"POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         author: "Anna",
+//         body: "CRUD",
+//         title: "Title",
+//         userID:100,
+//       }),      
+// })
+// .then(r => r.json())
+// .then(post => console.log(post))
+// .catch(error => console.log(error))
+
+//PUT
+// const postAdd = {
+//   author: "Anna",
+//   body: "CRUD new",
+//   id: 2,
+// }
+
+// const options = {
+//   method: "PATCH",
+//   body: JSON.stringify(postAdd),
+//   headers: {
+//     "Content-Type": "application/json"
+//   }
+// };
+
+// fetch(`https://jsonplaceholder.typicode.com/posts/${postAdd.id}`, options)
+// .then(r => r.json())
+// .then(post => console.log(post))
+// .catch(error => console.log(error));
+
+//DELETE
+const deletePost = 200;
+fetch(`https://jsonplaceholder.typicode.com/posts/${deletePost}`, {
+  method: "DELETE",
+})
+.then(() => console.log('Post deleted'))
+.catch(error => console.log(error));
