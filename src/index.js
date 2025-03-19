@@ -1,5 +1,8 @@
 // import Handlebars from 'handlebars';
 
+const { helpers } = require("handlebars");
+const { bodyParser } = require("json-server");
+
 // const users = [
 //    { name: "Олексій", age: 30, city: "Чернівці" },
 //    { name: "Юра", age: 14, city: "Валя-Кузьмина" },
@@ -1569,7 +1572,23 @@
 // }
 
 
-
+// const apiKey = '49340617-5f7223bcca914867675ecc2b9';
+//     function loadImages() {
+//    fetch(`https://pixabay.com/api/?key=${apiKey}&editors_choice=true&per_page=5&page=1`)
+//         .then(response => response.json())
+//         .then(data => {
+//           const gallery = document.getElementById('image-gallery');
+//           data.hits.forEach(hit => {
+//             const imgElement = document.createElement('img');
+//             imgElement.src = hit.previewURL;
+//             imgElement.alt = hit.tags;
+//             gallery.appendChild(imgElement);
+//           });
+//           currentPage++;
+//         })
+//         .catch(error => console.log('Error fetching images:', error));
+//     }
+//     document.getElementById('load-more-btn').addEventListener('click', loadImages);
 
 
 
@@ -1642,21 +1661,32 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+const BASE_URL = "http://localhost:3000/students";
+//1
+fetch(BASE_URL)
+.then(r => r.json())
+.then(data => console.log("All students: ", data))
+.catch(error => console.error("Error fetching students:", error));
+//2
+fetch(`${BASE_URL}/1`)
+.then(r => r.json())
+.then(data => console.log(data))
+.catch(error => console.error(error));
 
-const apiKey = '49340617-5f7223bcca914867675ecc2b9';
-    function loadImages() {
-   fetch(`https://pixabay.com/api/?key=${apiKey}&editors_choice=true&per_page=5&page=1`)
-        .then(response => response.json())
-        .then(data => {
-          const gallery = document.getElementById('image-gallery');
-          data.hits.forEach(hit => {
-            const imgElement = document.createElement('img');
-            imgElement.src = hit.previewURL;
-            imgElement.alt = hit.tags;
-            gallery.appendChild(imgElement);
-          });
-          currentPage++;
-        })
-        .catch(error => console.log('Error fetching images:', error));
-    }
-    document.getElementById('load-more-btn').addEventListener('click', loadImages);
+const newSt = {
+  name: 'Miranda Vera',
+  age: 20,
+  email: 'miranda.vera@gmail.com',
+  phone: '555-3821',
+};
+const options = {
+  method: "POST",
+  body: JSON.stringify(newSt),
+  headers: {
+    "Content-Type": "application/json"
+  }
+};
+fetch(BASE_URL, options)
+.then(r => r.json())
+.then(data => console.log(data))
+.catch(error => console.log(error))
