@@ -1661,32 +1661,103 @@ const { bodyParser } = require("json-server");
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-const BASE_URL = "http://localhost:3000/students";
-//1
-fetch(BASE_URL)
-.then(r => r.json())
-.then(data => console.log("All students: ", data))
-.catch(error => console.error("Error fetching students:", error));
-//2
-fetch(`${BASE_URL}/1`)
-.then(r => r.json())
-.then(data => console.log(data))
-.catch(error => console.error(error));
+// const BASE_URL = "http://localhost:3000/students";
+// //1
+// fetch(BASE_URL)
+// .then(r => r.json())
+// .then(data => console.log("All students: ", data))
+// .catch(error => console.error("Error fetching students:", error));
+// //2
+// fetch(`${BASE_URL}/1`)
+// .then(r => r.json())
+// .then(data => console.log(data))
+// .catch(error => console.error(error));
 
-const newSt = {
-  name: 'Miranda Vera',
-  age: 20,
-  email: 'miranda.vera@gmail.com',
-  phone: '555-3821',
-};
-const options = {
-  method: "POST",
-  body: JSON.stringify(newSt),
-  headers: {
-    "Content-Type": "application/json"
-  }
-};
-fetch(BASE_URL, options)
-.then(r => r.json())
-.then(data => console.log(data))
-.catch(error => console.log(error))
+// const newSt = {
+//   name: 'Miranda Vera',
+//   age: 20,
+//   email: 'miranda.vera@gmail.com',
+//   phone: '555-3821',
+// };
+// const options = {
+//   method: "POST",
+//   body: JSON.stringify(newSt),
+//   headers: {
+//     "Content-Type": "application/json"
+//   }
+// };
+// fetch(BASE_URL, options)
+// .then(r => r.json())
+// .then(data => console.log(data))
+// .catch(error => console.log(error))
+
+/////////////////////////////////////////////////////
+//async //await
+//1
+// const friends = () => {
+//   return fetch("my-api.com/me")
+//   .then(token => {
+//     return fetch(`my-api.com/profile?token=${token}`);
+//   })
+//   .then(user => {
+//     return fetch(`my-api.com/me/users/${user.id}/friends`);
+//   });
+// }
+
+// friends()
+// .then(friends => console.log(friends))
+// .catch(error => console.log(error));
+//2
+// const friendsFetch = async () => {
+//   const token = await fetch("my-api.com/me");
+//   const user = await fetch(`my-api.com/profile?token=${token}`);
+//   const friends = await fetch(`my-api.com/me/users/${user.id}/friends`);
+//   return friends;
+// }
+// friendsFetch()
+// .then(friends => console.log(friends))
+// .catch(error => console.log(error));
+
+/////////////////////////////////////////////////
+//1
+// const fetchUsers = async () => {
+//   try{
+//     const response = await fetch('https://jsonplaceholder.typicode.com/users');
+//     const users = await response.json();
+//     console.log(users)
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// }
+// fetchUsers()
+// //2
+// const fetchUsers = async () => {
+//     const response = await fetch('https://jsonplaceholder.typicode.com/users');
+//     const users = await response.json();
+//     return users;
+//   } 
+//   const doUsers = async () => {
+//     try {
+//       const users = await fetchUsers();
+//       console.log() 
+//     } catch (error) {
+//       console.log(error.message)
+//     }
+//   }
+//   doUsers()
+
+////////////////////
+
+const fetchUsers = async () => {
+  const url = "https://jsonplaceholder.typicode.com";
+  const first = await fetch(`${url}/users/1`);
+  const second = await fetch(`${url}/users/2`);
+  const third = await fetch(`${url}/users/3`);
+
+  const firstUser = await first.json();
+  const secondUser = await second.json();
+  const thirdUser = await third.json();
+  console.log(firstUser, secondUser, thirdUser)
+}
+
+fetchUsers();
