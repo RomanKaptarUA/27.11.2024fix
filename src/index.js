@@ -1,7 +1,7 @@
 // import Handlebars from 'handlebars';
 
-const { helpers } = require("handlebars");
-const { bodyParser } = require("json-server");
+// const { helpers } = require("handlebars");
+// const { bodyParser } = require("json-server");
 
 // const users = [
 //    { name: "Олексій", age: 30, city: "Чернівці" },
@@ -1747,17 +1747,120 @@ const { bodyParser } = require("json-server");
 //   doUsers()
 
 ////////////////////
+//1
+// const fetchUsers = async () => {
+//   const url = "https://jsonplaceholder.typicode.com";
+//   const first = await fetch(`${url}/users/1`);
+//   const second = await fetch(`${url}/users/2`);
+//   const third = await fetch(`${url}/users/3`);
 
-const fetchUsers = async () => {
-  const url = "https://jsonplaceholder.typicode.com";
-  const first = await fetch(`${url}/users/1`);
-  const second = await fetch(`${url}/users/2`);
-  const third = await fetch(`${url}/users/3`);
+//   const firstUser = await first.json();
+//   const secondUser = await second.json();
+//   const thirdUser = await third.json();
+//   console.log(firstUser, secondUser, thirdUser)
+// }
+// fetchUsers();
 
-  const firstUser = await first.json();
-  const secondUser = await second.json();
-  const thirdUser = await third.json();
-  console.log(firstUser, secondUser, thirdUser)
+//2
+// const fetchUsers = async () => {
+//   const url = "https://jsonplaceholder.typicode.com";
+//   const userIds = [1, 2, 3];
+  
+//   const array = userIds.map(async userId => {
+//     const r = await fetch(`${url}/users/${userId}`);
+//     return r.json()
+//   }) 
+
+//   const users = await Promise.all(array);
+//   console.log(users);
+// }
+// fetchUsers();
+
+const BASE_URL = "http://localhost:3000/students";;
+//1 
+async function getAllStudents() {
+     try{
+      const r = await fetch(BASE_URL);
+      const data = await r.json(); 
+      console.log("All students: ", data)
+     }
+    
+     catch (error){
+            console.error("Error fetching students: ", error);
+     }
+}
+//2
+async function getStudentsById() {
+  try{
+    const r = await fetch(`${BASE_URL}/${id}`);
+    const data = await r.json();
+    console.log(`Students with ID ${id}: `, data);
+  }
+  catch (error) {
+    console.error("Error fetching students: ", error);
+  }
+}
+//3
+async function addStudents(student) {
+  try{
+       const r = await fetch(BASE_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(student)
+       });
+       const data = await r.json();
+       console.log('New student: ', data);
+  } 
+  catch (error){
+     console.log("Error adding student: ", error);
+  }
+}
+//4
+async function updateStudent(id, updateDate) {
+  try {
+    const r = await fetch(`${BASE_URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateDate),
+    });
+    const data = await r.json();
+    console.log("Updated student: ", data);
+  } catch (error) {
+    console.log("Error updating st", error);
+  }
+}
+//5
+async function patchStudent(id, patchData) {
+  try {
+    const r = await fetch(`${BASE_URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(patchData),
+    });
+    const data = await r.json();
+    console.log("Updated student: ", data);
+  } catch (error) {
+    console.log("Error updating st", error);
+  }
+}
+//6
+async function deleteStudent(id){
+  try{
+    await fetch(`${BASE_URL}/${id}`, { method: "DELETE" });
+    console.log('Deleted student: ', `${id}`)
+  }
+  catch (error) {
+      console.log('Помилка')
+  }
 }
 
-fetchUsers();
+getAllStudents();
+getAllStudents(2);
+
+const 
