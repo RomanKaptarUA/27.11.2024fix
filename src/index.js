@@ -1859,8 +1859,3 @@ async function deleteStudent(id){
       console.log('Помилка')
   }
 }
-
-getAllStudents();
-getAllStudents(2);
-
-const 
