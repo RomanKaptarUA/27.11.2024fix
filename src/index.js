@@ -1659,6 +1659,8 @@
 // .then(() => console.log('Post deleted'))
 // .catch(error => console.log(error));
 
+
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 // const BASE_URL = "http://localhost:3000/students";
@@ -1776,86 +1778,102 @@
 // }
 // fetchUsers();
 
-const BASE_URL = "http://localhost:3000/students";;
-//1 
-async function getAllStudents() {
-     try{
-      const r = await fetch(BASE_URL);
-      const data = await r.json(); 
-      console.log("All students: ", data)
-     }
+// const BASE_URL = "http://localhost:3000/students";;
+// //1 
+// async function getAllStudents() {
+//      try{
+//       const r = await fetch(BASE_URL);
+//       const data = await r.json(); 
+//       console.log("All students: ", data)
+//      }
     
-     catch (error){
-            console.error("Error fetching students: ", error);
-     }
-}
-//2
-async function getStudentsById() {
-  try{
-    const r = await fetch(`${BASE_URL}/${id}`);
-    const data = await r.json();
-    console.log(`Students with ID ${id}: `, data);
-  }
-  catch (error) {
-    console.error("Error fetching students: ", error);
-  }
-}
-//3
-async function addStudents(student) {
-  try{
-       const r = await fetch(BASE_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(student)
-       });
-       const data = await r.json();
-       console.log('New student: ', data);
-  } 
-  catch (error){
-     console.log("Error adding student: ", error);
-  }
-}
-//4
-async function updateStudent(id, updateDate) {
-  try {
-    const r = await fetch(`${BASE_URL}/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updateDate),
-    });
-    const data = await r.json();
-    console.log("Updated student: ", data);
-  } catch (error) {
-    console.log("Error updating st", error);
-  }
-}
-//5
-async function patchStudent(id, patchData) {
-  try {
-    const r = await fetch(`${BASE_URL}/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(patchData),
-    });
-    const data = await r.json();
-    console.log("Updated student: ", data);
-  } catch (error) {
-    console.log("Error updating st", error);
-  }
-}
-//6
-async function deleteStudent(id){
-  try{
-    await fetch(`${BASE_URL}/${id}`, { method: "DELETE" });
-    console.log('Deleted student: ', `${id}`)
-  }
-  catch (error) {
-      console.log('Помилка')
-  }
-}
+//      catch (error){
+//             console.error("Error fetching students: ", error);
+//      }
+// }
+// //2
+// async function getStudentsById() {
+//   try{
+//     const r = await fetch(`${BASE_URL}/${id}`);
+//     const data = await r.json();
+//     console.log(`Students with ID ${id}: `, data);
+//   }
+//   catch (error) {
+//     console.error("Error fetching students: ", error);
+//   }
+// }
+// //3
+// async function addStudents(student) {
+//   try{
+//        const r = await fetch(BASE_URL, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(student)
+//        });
+//        const data = await r.json();
+//        console.log('New student: ', data);
+//   } 
+//   catch (error){
+//      console.log("Error adding student: ", error);
+//   }
+// }
+// //4
+// async function updateStudent(id, updateDate) {
+//   try {
+//     const r = await fetch(`${BASE_URL}/${id}`, {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(updateDate),
+//     });
+//     const data = await r.json();
+//     console.log("Updated student: ", data);
+//   } catch (error) {
+//     console.log("Error updating st", error);
+//   }
+// }
+// //5
+// async function patchStudent(id, patchData) {
+//   try {
+//     const r = await fetch(`${BASE_URL}/${id}`, {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(patchData),
+//     });
+//     const data = await r.json();
+//     console.log("Updated student: ", data);
+//   } catch (error) {
+//     console.log("Error updating st", error);
+//   }
+// }
+// //6
+// async function deleteStudent(id){
+//   try{
+//     await fetch(`${BASE_URL}/${id}`, { method: "DELETE" });
+//     console.log('Deleted student: ', `${id}`)
+//   }
+//   catch (error) {
+//       console.log('Помилка')
+//   }
+// }
+
+
+
+let seconds = 0;
+const button = document.querySelector('.btn');
+const span = document.querySelector('.span');
+
+button.addEventListener('click', () => {
+  let timerId = setInterval(function() {
+    seconds++;
+    span.textContent = seconds;
+    
+    }, 1000);
+    
+    
+})

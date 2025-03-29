@@ -597,6 +597,8 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"8lqZg":[function(require,module,exports,__globalThis) {
 // import Handlebars from 'handlebars';
+// const { helpers } = require("handlebars");
+// const { bodyParser } = require("json-server");
 // const users = [
 //    { name: "Олексій", age: 30, city: "Чернівці" },
 //    { name: "Юра", age: 14, city: "Валя-Кузьмина" },
@@ -1181,18 +1183,21 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 ////////////////////////////////////////////////////////////////
 // ПРОМІСИ
 // Юра Глуханюк
-const isActive = true;
-const one = new Promise((resolve, reject)=>{
-    setTimeout(()=>{
-        if (isActive) resolve('Person is active');
-        else reject('Person isn*t active');
-    }, 2000);
-});
+// const isActive = true;
+// const one = new Promise((resolve, reject) => {
+// setTimeout(() => {
+//     if(isActive) {
+//         resolve('Person is active')
+//     } else {
+//         reject('Person isn*t active')
+//     }
+// }, 2000)
+// });
 // console.log('Before one.then()');
 // one.then(
-//     value => {
-//         console.log('onResolve one.then()')
-//         console.log(value);
+//     Resolve one.then()')
+//         console.log(valvalue => {
+//         console.log('onue);
 //     },
 //     error => {
 //         console.log('onReject one.then()')
@@ -1200,12 +1205,793 @@ const one = new Promise((resolve, reject)=>{
 //     }
 // )
 // console.log('After one.then()');
-one.then((value)=>{
-    console.log(value);
-}).catch((error)=>{
-    console.log(error);
-})// використовуємо .finally() після завершення дії//
-.finally(()=>console.log('Promise settled'));
+// one
+// .then(value => {
+//     console.log(value);
+// })
+// .catch(error => {
+//     console.log(error);
+// })
+// // використовуємо .finally() після завершення дії//
+// .finally(() => console.log('Promise settled'));
+// ///////////////////////////////////
+// function updateCountdownTimer(selector, targetDate) {
+//     const timerElement = document.querySelector(selector);
+//     const now = new Date();
+//     const time = targetDate - now;
+//     if (time <= 0) {
+//       clearInterval(timerInterval);
+//       return;
+//     }
+//     const days = Math.floor(time / (1000 * 60 * 60 * 24));
+//     const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//     const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+//     const secs = Math.floor((time % (1000 * 60)) / 1000);
+//     displayTime(timerElement, days, hours, mins, secs);
+//   }
+//   function displayTime(timerElement, days, hours, mins, secs) {
+//     const dayElement = timerElement.querySelector('[data-value="days"]');
+//     const hourElement = timerElement.querySelector('[data-value="hours"]');
+//     const minElement = timerElement.querySelector('[data-value="mins"]');
+//     const secElement = timerElement.querySelector('[data-value="secs"]');
+//     dayElement.textContent = days;
+//     hourElement.textContent = hours.toString().padStart(2, '0');
+//     minElement.textContent = mins.toString().padStart(2, '0');
+//     secElement.textContent = secs.toString().padStart(2, '0');
+//   }
+//   const targetDate = new Date('June 1, 2025');
+//   const timerInterval = setInterval(() => {
+//     updateCountdownTimer('#timer-1', targetDate);
+//   }, 1000);
+//   updateCountdownTimer('#timer-1', targetDate);
+// const fetchUser = (userName, onSuccess, onError) => {
+//   setTimeout(() => {
+//     const isSuccess = true;
+//     if (isSuccess) {
+//       onSuccess('success value')
+//     } else {
+//       onError('error');
+//     }
+//   }, 1500);
+// }
+// const onFetchSuccess = user => {
+//   console.log(user);
+// } 
+// const onFetchError = error => {
+//   console.log(error);
+// };
+// fetchUser("Bob", onFetchSuccess, onFetchError);
+// const fetchUser = username => {
+//   return new Promise((resolve, reject) => {
+//     console.log(`Fetching ${username}`);
+//     setTimeout(() => {
+//       const isSuccess = true;
+//       if (isSuccess) {
+//         resolve('Success value')
+//       } else {
+//         reject('error')
+//       }
+//     }, 1500)
+//   })
+// }
+// fetchUser("Bob")
+// .then(user => console.log(user))
+// .catch(user => console.error(error));
+// function  addNumbers(a, b){
+//   return new Promise((resolve, reject) => {
+//     if(typeof a !== 'number' || typeof b !== 'number') {
+//         reject('Невірні дані!')
+//     } else {
+//         resolve(a + b)
+//     }
+//   })
+// }
+// addNumbers(25, 66)
+// .then(result => console.log(`Result: ${result}`))
+// .catch(result => console.error(`Result: ${error}`))
+///////////////////////////////////////////////////////
+// function checkEven(numbers) {
+// return new Promise((resolve, reject) => {
+//   if(!Array.isArray(numbers) || numbers.some(num => typeof num !== 'number')){
+//     reject('невірні дані!')
+//   } else if(numbers.some(num => num % 2 !== 0)){
+//     reject('непарні числа!')
+//   } else {
+//      resolve('Все вірно!')
+//   }
+// }) 
+// }
+// const numbers = [2, 4, 6, 8, 10];
+// checkEven(numbers)
+// .then(message => console.log('Успіх: ', message))
+// .then(error => console.error(error)); //Слава УкраЇні!
+////////////////////////////////////////////////////////////////////
+//1
+// Напиши функцію delay(ms),
+//  яка повертає проміс,
+//  що переходить в стан "resolved"
+//  через ms мілісекунд. Значенням промісу,
+//  яке виповнилося має бути та кількість мілісекунд,
+//  яку передали під час виклику функції delay.
+// const delay = ms => {
+//   return new Promise(resolve => setTimeout(() => resolve(ms), ms));
+// };
+// const logger = time => console.log(`Resolved after ${time} ms`);
+// delay(2000).then(logger); // Resolved after 2000ms
+// delay(1000).then(logger); // Resolved after 1000ms
+// delay(1500).then(logger); // Resolved after 1500ms
+// ///////////////////////////////////////////////////////////////////////////
+// //2
+// const randomIntegerFromInterval = (min, max) => {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// };
+// const makeTransaction = transaction => {
+//   const delay = randomIntegerFromInterval(200, 500);
+//    return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         const canProcess = Math.random() > 0.3;
+//         if (canProcess) {
+//           resolve ({ id: transaction.id, time: delay });
+//         } else {
+//       reject (transaction.id);
+//         }
+//       }, delay);
+//    })
+//   }
+// const logSuccess = ({ id, time }) => {
+//   console.log(`Transaction ${id} processed in ${time}ms`);
+// };
+// const logError = id => {
+//   console.warn(`Error processing transaction ${id}. Please try again later.`);
+// };
+// makeTransaction({ id: 70, amount: 150 })
+//   .then(logSuccess)
+//   .catch(logError);
+// makeTransaction({ id: 71, amount: 230 })
+//   .then(logSuccess)
+//   .catch(logError);
+// makeTransaction({ id: 72, amount: 75 })
+//   .then(logSuccess)
+//   .catch(logError);
+// makeTransaction({ id: 73, amount: 100 })
+//   .then(logSuccess)
+//   .catch(logError);
+////////////////////////////////////////////////
+//   const makePromise = (text, delay) => {
+//     return new Promise(resolve => {
+//       setTimeout(()=> resolve(text), delay)
+//     })
+//   }
+// const promiseOne = makePromise('promise one', 1500);
+// const promiseTwo = makePromise('promise two', 1000);
+// Promise.all([promiseOne, promiseTwo])
+// .then((value) => {
+//       console.log(value);
+// })
+// .catch((error) => {
+//   console.log(error);
+// })
+// // race
+// Promise.race([promiseOne, promiseTwo])
+// .then((value) => {
+//       console.log(value);
+// })
+// .catch((error) => {
+//   console.log(error);
+// })
+// any
+// Promise.any([
+//      new Promise((resolve, reject) =>
+//      setTimeout(() => reject(new Error('Oops!')), 1000)
+//  ),
+//   new Promise((resolve, reject) =>
+//   setTimeout(() => reject(new Error('Error!')), 1000)
+//  ),
+// ]).catch(error => {
+//     console.log(error); // AggregateError: All promises were rejected
+//     console.log(error.errors[0]); //Error: Oops!
+//     console.log(error.errors[1]); //Error: Error!
+// })
+//////////////////////////////////////////////
+// Promise.any([
+//   new Promise((resolve, reject) =>
+//   setTimeout(() => reject(new Error('Oops!')), 1000)
+// ),
+// new Promise((resolve, reject) => setTimeout(() => resolve('Успіх!'), 1500)),
+// new Promise((resolve, reject) =>
+// setTimeout(() => reject(new Error('Error!')), 1000)
+// ),
+// ]).then(value => console.log(value))
+// .catch(error => console.log(error));
+////////////////////////////////////////////////////////////
+//resolved
+//1
+// new Promise(resolve => resolve('success')).then(value => console.log(value));
+// //2
+// Promise.resolve('success').then(value => console.log(value));
+//////////////////////////////////////////////////////////////
+//rejected
+//1
+// new Promise((resolve, reject) => reject('error')).catch(error => console.log(error));
+//2
+// Promise.reject('error').catch(error => console.log(error));
+//////////////////////////////////////////////////////////////////////
+//1
+// const makePromise = guestName => {
+// if(guestName === '' || guestName === undefined){
+//     return{
+//       success: false,
+//       message: 'Error guest name'
+//     }
+//   }
+//   return{
+//     success: true,
+// message: `Welcome ${guestName}`,
+//   };
+// }
+// const result = makePromise('Bob')
+// if ( result.success){
+//   console.log(result.message)
+// } else {
+//    console.error(result.message)
+// }
+///////////////////////////////////////////////////////////////////////
+//2
+// const makePromise = (guestName, onSuccess, onError) => {
+//   if(guestName === '' || guestName === undefined){
+//     return onError('Error guest name');
+//   }
+//   onSuccess(`Welcome ${guestName}`)
+// }
+// makePromise('Bob',
+//   success => console.log(success),
+//   error => console.log(error)
+//  )
+//////////////////////////////////////////////////////////////////////////
+//3
+//  const makePromise = guestName => {
+//       if (guestName === '' || guestName === undefined) {
+//         return Promise.reject('Error guest name');
+//       }
+//       return Promise.resolve(`Welcome ${guestName}`);
+//  }
+//  makePromise('Bob')
+//  .then((success) => console.log(success))
+//  .catch((error) => console.error(error))
+///////////////////////////////////////////////////////////////////////
+//trycatch -- забіги
+// const horses = [
+//   'Хейлі',
+//   'Сем',
+//   'Аліса',
+//   'Георгій',
+//   'Луїза'
+// ];
+// let raceCounter = 0;
+// const refs = {
+//   startBtn: document.querySelector('.js-start-race'),
+//   winnerField: document.querySelector('.js-winner'),
+//   progressField: document.querySelector('.js-progress'),
+//   tableBody: document.querySelector('.js-results-table > tbody')
+// }
+// refs.startBtn.addEventListener('click', onStart);
+// function onStart() {
+//   raceCounter += 1;
+//   const promises = horses.map(run);
+//   updateWinnerField('');
+//   updateProgressField('Забіг вже розпочався, ставки не приймаються');
+//   determineWinner(promises);
+//   waitForAll(promises) 
+// }
+// function determineWinner(horsesP) {
+//  Promise.race(horsesP).then(({horse, time}) => {
+//   updateWinnerField(` 🎉 Переможець ${horse}, фінішував за ${time}`)  
+//   updateResultTable({ horse, time, raceCounter });
+//  })
+// }
+// function waitForAll(horseP) {
+//      Promise.all(promises).then(() => {
+//     updateProgressField('Забіг закінчено, ставки знову приймається!!')
+//      })
+// }
+// function updateWinnerField(message) {
+//   refs.winnerField.textContent = message;
+// }
+// function updateProgressField(message) {
+//   refs.progressField.textContent = message;
+// }
+// function updateResultTable({ horse, time, raceCounter }) {
+//   const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`
+//   refs.tableBody.insertAdjacentHTML('beforeend', tr)
+// }
+// function run(horse) {
+//   return new Promise(resolve => {
+//     const time = getRandomTime(1500, 3000);
+//     setTimeout(() => {
+//       resolve({ horse, time })
+//     }, time)
+//   }); 
+// };
+// function getRandomTime(min, max) {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// }
+///////////////////////////////////////////////////
+//AJAX
+// const button = document.getElementById("getCatFact");
+// const p = document.getElementById("catFact");
+// button.addEventListener('click', () => {
+//   fetch("https://catfact.ninja/fact")
+//   .then(response => response.json())
+//   .then(data => {
+//     p.textContent = data.fact;
+//   })
+//   .catch(error => {
+//     p.textContent = "Сталася помилка 😿";
+//     console.log("Error: ", error)
+//   })
+// })
+///////////////////////////////////////////////////
+// щоб був ліміт після fetch == ?_limit=2
+// сорт // після limit == &_sort=name
+// const fetchUsersBtn = document.getElementById('btn');
+// const userList = document.querySelector('.users-list');
+// fetchUsersBtn.addEventListener('click', () => {
+//       fetchUsers()
+//         .then((users) => renderUsers(users))
+//         .catch((error) => console.log(error))
+// });
+// function fetchUsers() {
+//   return fetch("https://jsonplaceholder.typicode.com/users?_limit=2&_sort=name")
+//   .then((response) => {
+//     if (!response.ok) {
+//       throw new Error(response.status)
+//     }
+//     return response.json();
+//   });
+// }
+// function renderUsers(users) {
+//   const markup = users
+//   .map((user) => {
+//     return `<li>
+//     <p><b>Name: </b>${user.name}</p>
+//     <p><b>Email: </b>${user.email}</p>
+//     <p><b>Company: </b>${user.company.name}</p>
+//   </li>`;
+//   })
+//   .join('');
+//   userList.insertAdjacentHTML('beforeend', markup);
+// }
+/////////////////
+// або
+// const searchParams = new URLSearchParams({
+//   _limit: 3,
+//   _sort: "name",
+// })
+// console.log(searchParams.toString());
+// // або
+// const url = `https://jsonplaceholder.typicode.com/users?${searchParams}`;
+// console.log(url);
+////////////////////////////////
+// const headers = {
+//   "Accept": "application/json",
+//   "Content-Type": "application/json",
+//   "X-Custom-Header": "custom value",
+//   "Authorization": "YOUR_API_TOKEN"
+// }
+// fetch("https://api.example.com/data", {
+//   method: "GET",
+//   headers: headers,
+// }).then(response => response.json())
+// .then(data => console.log(data))
+// .catch(error => console.error("Error:", error));
+//////////////////////////////////////////////
+// покемони
+// document.addEventListener('DOMContentLoaded', () => {
+//   const form = document.querySelector('.js-search-form');
+//   const cardContainer = document.querySelector('.js-card-container');
+//   if (!form || !cardContainer){
+//     console.error('Форма або контейнер не знайдені');
+//     return;
+//   }
+//   form.addEventListener('submit', async (e) => {
+//     e.preventDefault();
+//     const query = form.query.value.trim().toLowerCase();
+//     if (!query) return;
+//       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+//       if (response.ok) {
+//         const data = await response.json();
+//         render(data);
+//       } else {
+//         cardContainer.innerHTML = `<p class="error">Покемон не знайдений</p>`
+//       }
+//       form.reset();
+//   });
+//   function render(pokemon) {
+//           cardContainer.innerHTML = `
+//        <div class="card">
+//         <h2>${pokemon.name}</h2>
+//         <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+//         <p><strong>Вага: </strong>${pokemon.weight}</p>
+//         <p><strong>Зріст: </strong>${pokemon.height}</p>
+//        </div>
+//        `;
+//   }
+// })
+/////////////////////////////////////////////////////////////////////////////////////////
+// document.addEventListener("DOMContentLoaded", () => {
+//   const input = document.getElementById("inputEl");
+//   const form = document.getElementById("formEl");
+//   const listBody = document.querySelector('.news-list');
+//   form.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const topic = input.value;
+//     if (!topic) {
+//       alert("Field can not be empty");
+//     } else {
+//       listBody.innerHTML = '';
+//       fetchNews(topic);
+//       input.value = '';
+//     }
+//   });
+//   function fetchNews(topic) {
+//     const API_key = "abcce331db6348159c386666cbebddb7";
+//     const data = fetch(
+//       `https://newsapi.org/v2/everything?q=${topic}&apiKey=${API_key}&pageSize=10`
+//     )
+//       .then((response) => response.json())
+//       .then((general) => {
+//         if (general.status == 'ok') {
+//           renderNews(general.articles);
+//         } else {
+//           console.error(general.status);
+//           alert('We have some problems');
+//         }
+//       })
+//       .catch((error) => {
+//         console.error(error) 
+//         alert('We can not find this topic. Try again');
+//       });
+//   }
+//   function renderNews(articles) {
+//     const markup = articles.map(article => {
+//       return `<li class="news-item">
+//             <div class="news-wrap">
+//                 <p class="author">${article.author}</p>
+//                 <h3 class="title">${article.title}</h3>
+//                 <p class="description">${article.description}</p>
+//             </div>
+//             <img src="${article.urlToImage}" alt="${article.title} image" class="image">
+//         </li>`;
+//     });
+//     listBody.insertAdjacentHTML('beforeend', markup.join(''));
+//   }
+// });
+//////////////////////////////////////////////////////////////////////////////////////
+// пагінація
+// const refs = {
+//   searchForm: document.querySelector(".js-search-form"),
+//   articlesContainer: document.querySelector(".js-articles"),
+//   loadMoreBtn: document.querySelector('[data-action="load-more"]')
+// };
+// refs.searchForm.addEventListener("submit", onSearch);
+// //=> =>
+// refs.loadMoreBtn.addEventListener("click", onLoadMore);
+// function onSearch(e) {
+// e.preventDefault();
+// const searchQuery = e.currentTarget.elements.query.value;
+// const options = {
+//   headers: {
+//     Authorization: "d47ea7990cea4d34a207f7630f77824c",
+//   },
+// };
+// const url =`https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`;
+// fetch(url, options)
+// .then(r => r.json())
+// .then(console.log)
+// }
+// function onLoadMore() {
+//   const searchQuery = e.currentTarget.elements.query.value;
+// const options = {
+//   headers: {
+//     Authorization: "d47ea7990cea4d34a207f7630f77824c",
+//   },
+// };
+// fetch(
+//   `https://newsapi.org/v2/everything?q=${searchQuery}&language=en&pageSize=5&page=1`,
+//  options
+// )
+// .then(r => r.json())
+// .then(console.log)
+// }
+// const apiKey = '49340617-5f7223bcca914867675ecc2b9';
+//     function loadImages() {
+//    fetch(`https://pixabay.com/api/?key=${apiKey}&editors_choice=true&per_page=5&page=1`)
+//         .then(response => response.json())
+//         .then(data => {
+//           const gallery = document.getElementById('image-gallery');
+//           data.hits.forEach(hit => {
+//             const imgElement = document.createElement('img');
+//             imgElement.src = hit.previewURL;
+//             imgElement.alt = hit.tags;
+//             gallery.appendChild(imgElement);
+//           });
+//           currentPage++;
+//         })
+//         .catch(error => console.log('Error fetching images:', error));
+//     }
+//     document.getElementById('load-more-btn').addEventListener('click', loadImages);
+//////////////////////////////////////
+// CRUD
+// GET
+// fetch("https://jsonplaceholder.typicode.com/albums/100")
+// .then(response => response.json())
+// .then(data => console.log(data));
+//POST
+// const postAdd = {
+//   author: "Anna",
+//   body: "CRUD",
+// }
+// const options = {
+//   method: "POST",
+//   body: JSON.stringify(postAdd),
+//   headers: {
+//     "Content-Type": "application/json"
+//   }
+// }
+// fetch("https://jsonplaceholder.typicode.com/posts", {
+//       method:"POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         author: "Anna",
+//         body: "CRUD",
+//         title: "Title",
+//         userID:100,
+//       }),      
+// })
+// .then(r => r.json())
+// .then(post => console.log(post))
+// .catch(error => console.log(error))
+//PUT
+// const postAdd = {
+//   author: "Anna",
+//   body: "CRUD new",
+//   id: 2,
+// }
+// const options = {
+//   method: "PATCH",
+//   body: JSON.stringify(postAdd),
+//   headers: {
+//     "Content-Type": "application/json"
+//   }
+// };
+// fetch(`https://jsonplaceholder.typicode.com/posts/${postAdd.id}`, options)
+// .then(r => r.json())
+// .then(post => console.log(post))
+// .catch(error => console.log(error));
+//DELETE
+// const deletePost = 200;
+// fetch(`https://jsonplaceholder.typicode.com/posts/${deletePost}`, {
+//   method: "DELETE",
+// })
+// .then(() => console.log('Post deleted'))
+// .catch(error => console.log(error));
+/////////////////////////////////////////////////////////////////////////////////////////
+// const BASE_URL = "http://localhost:3000/students";
+// //1
+// fetch(BASE_URL)
+// .then(r => r.json())
+// .then(data => console.log("All students: ", data))
+// .catch(error => console.error("Error fetching students:", error));
+// //2
+// fetch(`${BASE_URL}/1`)
+// .then(r => r.json())
+// .then(data => console.log(data))
+// .catch(error => console.error(error));
+// const newSt = {
+//   name: 'Miranda Vera',
+//   age: 20,
+//   email: 'miranda.vera@gmail.com',
+//   phone: '555-3821',
+// };
+// const options = {
+//   method: "POST",
+//   body: JSON.stringify(newSt),
+//   headers: {
+//     "Content-Type": "application/json"
+//   }
+// };
+// fetch(BASE_URL, options)
+// .then(r => r.json())
+// .then(data => console.log(data))
+// .catch(error => console.log(error))
+/////////////////////////////////////////////////////
+//async //await
+//1
+// const friends = () => {
+//   return fetch("my-api.com/me")
+//   .then(token => {
+//     return fetch(`my-api.com/profile?token=${token}`);
+//   })
+//   .then(user => {
+//     return fetch(`my-api.com/me/users/${user.id}/friends`);
+//   });
+// }
+// friends()
+// .then(friends => console.log(friends))
+// .catch(error => console.log(error));
+//2
+// const friendsFetch = async () => {
+//   const token = await fetch("my-api.com/me");
+//   const user = await fetch(`my-api.com/profile?token=${token}`);
+//   const friends = await fetch(`my-api.com/me/users/${user.id}/friends`);
+//   return friends;
+// }
+// friendsFetch()
+// .then(friends => console.log(friends))
+// .catch(error => console.log(error));
+/////////////////////////////////////////////////
+//1
+// const fetchUsers = async () => {
+//   try{
+//     const response = await fetch('https://jsonplaceholder.typicode.com/users');
+//     const users = await response.json();
+//     console.log(users)
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// }
+// fetchUsers()
+// //2
+// const fetchUsers = async () => {
+//     const response = await fetch('https://jsonplaceholder.typicode.com/users');
+//     const users = await response.json();
+//     return users;
+//   } 
+//   const doUsers = async () => {
+//     try {
+//       const users = await fetchUsers();
+//       console.log() 
+//     } catch (error) {
+//       console.log(error.message)
+//     }
+//   }
+//   doUsers()
+////////////////////
+//1
+// const fetchUsers = async () => {
+//   const url = "https://jsonplaceholder.typicode.com";
+//   const first = await fetch(`${url}/users/1`);
+//   const second = await fetch(`${url}/users/2`);
+//   const third = await fetch(`${url}/users/3`);
+//   const firstUser = await first.json();
+//   const secondUser = await second.json();
+//   const thirdUser = await third.json();
+//   console.log(firstUser, secondUser, thirdUser)
+// }
+// fetchUsers();
+//2
+// const fetchUsers = async () => {
+//   const url = "https://jsonplaceholder.typicode.com";
+//   const userIds = [1, 2, 3];
+//   const array = userIds.map(async userId => {
+//     const r = await fetch(`${url}/users/${userId}`);
+//     return r.json()
+//   }) 
+//   const users = await Promise.all(array);
+//   console.log(users);
+// }
+// fetchUsers();
+// const BASE_URL = "http://localhost:3000/students";;
+// //1 
+// async function getAllStudents() {
+//      try{
+//       const r = await fetch(BASE_URL);
+//       const data = await r.json(); 
+//       console.log("All students: ", data)
+//      }
+//      catch (error){
+//             console.error("Error fetching students: ", error);
+//      }
+// }
+// //2
+// async function getStudentsById() {
+//   try{
+//     const r = await fetch(`${BASE_URL}/${id}`);
+//     const data = await r.json();
+//     console.log(`Students with ID ${id}: `, data);
+//   }
+//   catch (error) {
+//     console.error("Error fetching students: ", error);
+//   }
+// }
+// //3
+// async function addStudents(student) {
+//   try{
+//        const r = await fetch(BASE_URL, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(student)
+//        });
+//        const data = await r.json();
+//        console.log('New student: ', data);
+//   } 
+//   catch (error){
+//      console.log("Error adding student: ", error);
+//   }
+// }
+// //4
+// async function updateStudent(id, updateDate) {
+//   try {
+//     const r = await fetch(`${BASE_URL}/${id}`, {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(updateDate),
+//     });
+//     const data = await r.json();
+//     console.log("Updated student: ", data);
+//   } catch (error) {
+//     console.log("Error updating st", error);
+//   }
+// }
+// //5
+// async function patchStudent(id, patchData) {
+//   try {
+//     const r = await fetch(`${BASE_URL}/${id}`, {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(patchData),
+//     });
+//     const data = await r.json();
+//     console.log("Updated student: ", data);
+//   } catch (error) {
+//     console.log("Error updating st", error);
+//   }
+// }
+// //6
+// async function deleteStudent(id){
+//   try{
+//     await fetch(`${BASE_URL}/${id}`, { method: "DELETE" });
+//     console.log('Deleted student: ', `${id}`)
+//   }
+//   catch (error) {
+//       console.log('Помилка')
+//   }
+// }
+// Функція для показу сповіщення, якщо країн більше 10
+function showNotification() {
+    PNotify.alert({
+        text: "\u0411\u0443\u0434\u044C \u043B\u0430\u0441\u043A\u0430, \u0443\u0442\u043E\u0447\u043D\u0456\u0442\u044C \u0437\u0430\u043F\u0438\u0442, \u043E\u0441\u043A\u0456\u043B\u044C\u043A\u0438 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E \u0431\u0456\u043B\u044C\u0448\u0435 10 \u043A\u0440\u0430\u0457\u043D.",
+        type: 'info'
+    });
+}
+// Функція для запиту на API
+async function fetchCountries(query) {
+    if (!query) return; // Якщо порожній запит — не робимо запит
+    const response = await fetch(`https://restcountries.com/v3.1/name/${query}`);
+    const countries = await response.json();
+    // Перевірка, скільки країн знайдено
+    if (countries.length > 10) showNotification();
+    // Виведення результатів
+    const countryList = document.getElementById('country-list');
+    countryList.innerHTML = ''; // Очищаємо список перед новим відображенням
+    countries.forEach((country)=>{
+        const listItem = document.createElement('li');
+        listItem.textContent = country.name.common;
+        countryList.appendChild(listItem);
+    });
+}
+// Дебаунсинг для затримки запитів
+const debouncedFetch = _.debounce(fetchCountries, 500);
+// Обробка вводу
+document.getElementById('country-search').addEventListener('input', (e)=>{
+    debouncedFetch(e.target.value);
+});
 
 },{}]},["9mu7C","8lqZg"], "8lqZg", "parcelRequire94c2")
 
