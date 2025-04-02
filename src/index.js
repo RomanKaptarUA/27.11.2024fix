@@ -1778,19 +1778,19 @@
 // }
 // fetchUsers();
 
-// const BASE_URL = "http://localhost:3000/students";;
-// //1 
-// async function getAllStudents() {
-//      try{
-//       const r = await fetch(BASE_URL);
-//       const data = await r.json(); 
-//       console.log("All students: ", data)
-//      }
+const BASE_URL = "http://localhost:3000/students";;
+//1 
+async function getAllStudents() {
+     try{
+      const r = await fetch(BASE_URL);
+      const data = await r.json(); 
+      console.log("All students: ", data)
+     }
     
-//      catch (error){
-//             console.error("Error fetching students: ", error);
-//      }
-// }
+     catch (error){
+            console.error("Error fetching students: ", error);
+     }
+}
 // //2
 // async function getStudentsById() {
 //   try{
@@ -1819,7 +1819,7 @@
 //      console.log("Error adding student: ", error);
 //   }
 // }
-// //4
+//4
 // async function updateStudent(id, updateDate) {
 //   try {
 //     const r = await fetch(`${BASE_URL}/${id}`, {
@@ -1861,19 +1861,3 @@
 //       console.log('Помилка')
 //   }
 // }
-
-
-
-let seconds = 0;
-const button = document.querySelector('.btn');
-const span = document.querySelector('.span');
-
-button.addEventListener('click', () => {
-  let timerId = setInterval(function() {
-    seconds++;
-    span.textContent = seconds;
-    
-    }, 1000);
-    
-    
-})
